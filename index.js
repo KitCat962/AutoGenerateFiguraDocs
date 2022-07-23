@@ -11,15 +11,198 @@
     "Function": "function",
     "Userdata": "userdata",
     "AnyType": "any",
-    "ModelPart": "ModelPart|table<string,ModelPart|table<string,ModelPart|table<string,ModelPart|table<string,ModelPart|table<string,ModelPart|table<string,ModelPart|table<string,ModelPart|table<string,ModelPart|table<string,ModelPart|table<string,ModelPart>>>>>>>>>>",
     "Vector": "Vector2|Vector3|Vector4|Vector5|Vector6"
   }
-  const classOverrides = {
+  const overrides = {
     "globals": {
-      global: true
+      global: true,
+      field: {
+        "vec": {
+          override:
+            `---An alias for "vectors.vec", since it's used so often.\n` +
+            `---@param x number\n` +
+            `---@param y number\n` +
+            `---@return Vector2\n` +
+            `---@overload fun(x:number, y:number, z:number):Vector3\n` +
+            `---@overload fun(x:number, y:number, z:number, w:number):Vector4\n` +
+            `---@overload fun(x:number, y:number, z:number, w:number, t:number):Vector5\n` +
+            `---@overload fun(x:number, y:number, z:number, w:number, t:number, h:number):Vector6\n` +
+            `function vec(x, y) end\n`
+        },
+        "animation": {
+          name: "animations",
+          type: "table<string,Animation>"
+        }
+      }
     },
     "math": {
-      nonLocal: true
+      nonLocal: true,
+      method: {
+        "lerp": {
+          overload: {
+            replace: true,
+            overloads: [
+              `---@overload fun(a:Vector2,b:Vector2,t:number):Vector2\n`,
+              `---@overload fun(a:Vector3,b:Vector3,t:number):Vector3\n`,
+              `---@overload fun(a:Vector4,b:Vector4,t:number):Vector4\n`,
+              `---@overload fun(a:Vector5,b:Vector5,t:number):Vector5\n`,
+              `---@overload fun(a:Vector6,b:Vector6,t:number):Vector6\n`
+            ]
+          }
+        }
+      }
+    },
+    "Animation": {
+      method: {
+        "getPlayState": {
+          return: "PlayState"
+        },
+        "loop": {
+          param: {
+            "loop": {
+              type: "LoopMode"
+            }
+          }
+        }
+      }
+    },
+    "Entity": {
+      method: {
+        "getPose": {
+          return: "EntityPose"
+        }
+      }
+    },
+    "ItemTask": {
+      method: {
+        "renderType": {
+          param: {
+            "renderType": {
+              type: "ItemRenderType"
+            }
+          }
+        }
+      }
+    },
+    "KeybindAPI": {
+      method: {
+        "create": {
+          param: {
+            "key": {
+              type: "KeybindID"
+            }
+          }
+        },
+        "getVanillaKey": {
+          param: {
+            "id": {
+              type: "KeyID"
+            }
+          },
+          return: "KeybindID"
+        }
+      }
+    },
+    "Keybind": {
+      method: {
+        "getKey": {
+          return: "KeybindID"
+        },
+        "setKey": {
+          param: {
+            "key": {
+              type: "KeybindID"
+            }
+          }
+        }
+      }
+    },
+    "LivingEntity": {
+      method: {
+        "getActiveHand": {
+          return: `"OFF_HAND"|"MAIN_HAND"`
+        },
+        "getPose": {
+          return: "EntityPose"
+        }
+      }
+    },
+    "ModelPart": {
+      field: {
+        fields: [
+          `---@field [string] ModelPart\n`
+        ]
+      },
+      method: {
+        "getChildren": {
+          return: "ModelPart[]"
+        },
+        "getParentType": {
+          return: "ParentType"
+        },
+        "setParentType": {
+          param: {
+            "parentType": {
+              type: "ParentType"
+            }
+          }
+        },
+        "getPrimaryRenderType": {
+          return: "RenderType"
+        },
+        "setPrimaryRenderType": {
+          param: {
+            "renderType": {
+              type: "RenderType"
+            }
+          }
+        },
+        "getSecondaryRenderType": {
+          return: "RenderType"
+        },
+        "setSecondaryRenderType": {
+          param: {
+            "renderType": {
+              type: "RenderType"
+            }
+          }
+        },
+        "setPrimaryTexture": {
+          param: {
+            "textureType": {
+              type: "TextureType"
+            }
+          }
+        },
+        "setSecondaryTexture": {
+          param: {
+            "textureType": {
+              type: "TextureType"
+            }
+          }
+        },
+      }
+    },
+    "Player": {
+      method: {
+        "getActiveHand": {
+          return: `"OFF_HAND"|"MAIN_HAND"`
+        },
+        "getPose": {
+          return: "EntityPose"
+        }
+      }
+    },
+    "RendererAPI": {
+      method: {
+        "setPostEffect": {
+          param: {
+            "effect": {
+              type: "PostEffect"
+            }
+          }
+        }
+      }
     },
     "EntityPoses": {
       name: "EntityPose"
@@ -51,301 +234,160 @@
     "TextureTypes": {
       name: "TextureType"
     },
-    "Matrix2":{
-      operator:[
-        '---@operator mul(Matrix2|Matrix2):Matrix2\n',
-        '---@operator mul(Matrix2|Vector2):Vector2\n',
-      ]
+    "Matrix2": {
+      operator: {
+        operators: [
+          '---@operator mul(Matrix2|Matrix2):Matrix2\n',
+          '---@operator mul(Matrix2|Vector2):Vector2\n',
+        ]
+      }
     },
-    "Matrix3":{
-      operator:[
-        '---@operator mul(Matrix3|Matrix3):Matrix3\n',
-        '---@operator mul(Matrix3|Vector3):Vector3\n',
-      ]
+    "Matrix3": {
+      operator: {
+        operators: [
+          '---@operator mul(Matrix3|Matrix3):Matrix3\n',
+          '---@operator mul(Matrix3|Vector3):Vector3\n',
+        ]
+      }
     },
-    "Matrix4":{
-      operator:[
-        '---@operator mul(Matrix4|Matrix4):Matrix4\n',
-        '---@operator mul(Matrix4|Vector4):Vector4\n',
-      ]
+    "Matrix4": {
+      operator: {
+        operators: [
+          '---@operator mul(Matrix4|Matrix4):Matrix4\n',
+          '---@operator mul(Matrix4|Vector4):Vector4\n',
+        ]
+      }
     },
     "Vector2": {
-      operator: [
-        '---@operator add(Vector2|Vector2):Vector2\n',
-        '---@operator sub(Vector2|Vector2):Vector2\n',
-        '---@operator mul(Vector2|Vector2):Vector2\n',
-        '---@operator mul(Vector2|number):Vector2\n',
-        '---@operator div(Vector2|Vector2):Vector2\n',
-        '---@operator div(Vector2|number):Vector2\n',
-        '---@operator mod(Vector2|Vector2):Vector2\n',
-        '---@operator mod(Vector2|number):Vector2\n',
-      ]
+      operator: {
+        operators: [
+          '---@operator add(Vector2|Vector2):Vector2\n',
+          '---@operator sub(Vector2|Vector2):Vector2\n',
+          '---@operator mul(Vector2|Vector2):Vector2\n',
+          '---@operator mul(Vector2|number):Vector2\n',
+          '---@operator div(Vector2|Vector2):Vector2\n',
+          '---@operator div(Vector2|number):Vector2\n',
+          '---@operator mod(Vector2|Vector2):Vector2\n',
+          '---@operator mod(Vector2|number):Vector2\n',
+        ]
+      }
     },
     "Vector3": {
-      operator: [
-        '---@operator add(Vector3|Vector3):Vector3\n',
-        '---@operator sub(Vector3|Vector3):Vector3\n',
-        '---@operator mul(Vector3|Vector3):Vector3\n',
-        '---@operator mul(Vector3|number):Vector3\n',
-        '---@operator div(Vector3|Vector3):Vector3\n',
-        '---@operator div(Vector3|number):Vector3\n',
-        '---@operator mod(Vector3|Vector3):Vector3\n',
-        '---@operator mod(Vector3|number):Vector3\n',
-      ]
+      operator: {
+        operators: [
+          '---@operator add(Vector3|Vector3):Vector3\n',
+          '---@operator sub(Vector3|Vector3):Vector3\n',
+          '---@operator mul(Vector3|Vector3):Vector3\n',
+          '---@operator mul(Vector3|number):Vector3\n',
+          '---@operator div(Vector3|Vector3):Vector3\n',
+          '---@operator div(Vector3|number):Vector3\n',
+          '---@operator mod(Vector3|Vector3):Vector3\n',
+          '---@operator mod(Vector3|number):Vector3\n',
+        ]
+      }
     },
     "Vector4": {
-      operator: [
-        '---@operator add(Vector4|Vector4):Vector4\n',
-        '---@operator sub(Vector4|Vector4):Vector4\n',
-        '---@operator mul(Vector4|Vector4):Vector4\n',
-        '---@operator mul(Vector4|number):Vector4\n',
-        '---@operator div(Vector4|Vector4):Vector4\n',
-        '---@operator div(Vector4|number):Vector4\n',
-        '---@operator mod(Vector4|Vector4):Vector4\n',
-        '---@operator mod(Vector4|number):Vector4\n',
-      ]
+      operator: {
+        operators: [
+          '---@operator add(Vector4|Vector4):Vector4\n',
+          '---@operator sub(Vector4|Vector4):Vector4\n',
+          '---@operator mul(Vector4|Vector4):Vector4\n',
+          '---@operator mul(Vector4|number):Vector4\n',
+          '---@operator div(Vector4|Vector4):Vector4\n',
+          '---@operator div(Vector4|number):Vector4\n',
+          '---@operator mod(Vector4|Vector4):Vector4\n',
+          '---@operator mod(Vector4|number):Vector4\n',
+        ]
+      }
     },
     "Vector5": {
-      operator: [
-        '---@operator add(Vector5|Vector5):Vector5\n',
-        '---@operator sub(Vector5|Vector5):Vector5\n',
-        '---@operator mul(Vector5|Vector5):Vector5\n',
-        '---@operator mul(Vector5|number):Vector5\n',
-        '---@operator div(Vector5|Vector5):Vector5\n',
-        '---@operator div(Vector5|number):Vector5\n',
-        '---@operator mod(Vector5|Vector5):Vector5\n',
-        '---@operator mod(Vector5|number):Vector5\n',
-      ]
+      operator: {
+        operators: [
+          '---@operator add(Vector5|Vector5):Vector5\n',
+          '---@operator sub(Vector5|Vector5):Vector5\n',
+          '---@operator mul(Vector5|Vector5):Vector5\n',
+          '---@operator mul(Vector5|number):Vector5\n',
+          '---@operator div(Vector5|Vector5):Vector5\n',
+          '---@operator div(Vector5|number):Vector5\n',
+          '---@operator mod(Vector5|Vector5):Vector5\n',
+          '---@operator mod(Vector5|number):Vector5\n',
+        ]
+      }
     },
     "Vector6": {
-      operator: [
-        '---@operator add(Vector6|Vector6):Vector6\n',
-        '---@operator sub(Vector6|Vector6):Vector6\n',
-        '---@operator mul(Vector6|Vector6):Vector6\n',
-        '---@operator mul(Vector6|number):Vector6\n',
-        '---@operator div(Vector6|Vector6):Vector6\n',
-        '---@operator div(Vector6|number):Vector6\n',
-        '---@operator mod(Vector6|Vector6):Vector6\n',
-        '---@operator mod(Vector6|number):Vector6\n',
-      ]
-    }
-  }
-  const fieldOverrides = {
-    "globals": {
-      "vec": {
-        override:
-          `---An alias for "vectors.vec", since it's used so often.\n` +
-          `---@param x number\n` +
-          `---@param y number\n` +
-          `---@return Vector2\n` +
-          `---@overload fun(x:number, y:number, z:number):Vector3\n` +
-          `---@overload fun(x:number, y:number, z:number, w:number):Vector4\n` +
-          `---@overload fun(x:number, y:number, z:number, w:number, t:number):Vector5\n` +
-          `---@overload fun(x:number, y:number, z:number, w:number, t:number, h:number):Vector6\n` +
-          `function vec(x, y) end\n`
-      },
-      "animation": {
-        name: "animations",
-        type: "table<string,Animation>"
+      operator: {
+        operators: [
+          '---@operator add(Vector6|Vector6):Vector6\n',
+          '---@operator sub(Vector6|Vector6):Vector6\n',
+          '---@operator mul(Vector6|Vector6):Vector6\n',
+          '---@operator mul(Vector6|number):Vector6\n',
+          '---@operator div(Vector6|Vector6):Vector6\n',
+          '---@operator div(Vector6|number):Vector6\n',
+          '---@operator mod(Vector6|Vector6):Vector6\n',
+          '---@operator mod(Vector6|number):Vector6\n',
+        ]
       }
     }
-  }
-  const methodOverrides = {
-    "Animation": {
-      "getPlayState": {
-        return: "PlayState"
-      },
-      "loop": {
-        param: {
-          "loop": {
-            type: "LoopMode"
-          }
-        }
-      }
-    },
-    "Entity": {
-      "getPose": {
-        return: "EntityPose"
-      }
-    },
-    "LivingEntity": {
-      "getActiveHand": {
-        return: `"OFF_HAND"|"MAIN_HAND"`
-      },
-      "getPose": {
-        return: "EntityPose"
-      }
-    },
-    "Player": {
-      "getActiveHand": {
-        return: `"OFF_HAND"|"MAIN_HAND"`
-      },
-      "getPose": {
-        return: "EntityPose"
-      }
-    },
-    "ModelPart": {
-      "getChildren": {
-        return: "ModelPart[]"
-      },
-      "getParentType": {
-        return: "ParentType"
-      },
-      "setParentType": {
-        param: {
-          "parentType": {
-            type: "ParentType"
-          }
-        }
-      },
-      "getPrimaryRenderType": {
-        return: "RenderType"
-      },
-      "setPrimaryRenderType": {
-        param: {
-          "renderType": {
-            type: "RenderType"
-          }
-        }
-      },
-      "getSecondaryRenderType": {
-        return: "RenderType"
-      },
-      "setSecondaryRenderType": {
-        param: {
-          "renderType": {
-            type: "RenderType"
-          }
-        }
-      },
-      "setPrimaryTexture": {
-        param: {
-          "textureType": {
-            type: "TextureType"
-          }
-        }
-      },
-      "setSecondaryTexture": {
-        param: {
-          "textureType": {
-            type: "TextureType"
-          }
-        }
-      },
-    },
-    "ItemTask": {
-      "renderType": {
-        param: {
-          "renderType": {
-            type: "ItemRenderType"
-          }
-        }
-      }
-    },
-    "KeybindAPI": {
-      "create": {
-        param: {
-          "key": {
-            type: "KeybindID"
-          }
-        }
-      },
-      "getVanillaKey": {
-        param: {
-          "id": {
-            type: "KeyID"
-          }
-        },
-        return: "KeybindID"
-      }
-    },
-    "Keybind": {
-      "getKey": {
-        return: "KeybindID"
-      },
-      "setKey": {
-        param: {
-          "key": {
-            type: "KeybindID"
-          }
-        }
-      }
-    },
-    "math": {
-      "lerp": {
-        overload: {
-          replace: true,
-          overloads: [
-            `---@overload fun(a:Vector2,b:Vector2,t:number):Vector2\n`,
-            `---@overload fun(a:Vector3,b:Vector3,t:number):Vector3\n`,
-            `---@overload fun(a:Vector4,b:Vector4,t:number):Vector4\n`,
-            `---@overload fun(a:Vector5,b:Vector5,t:number):Vector5\n`,
-            `---@overload fun(a:Vector6,b:Vector6,t:number):Vector6\n`
-          ]
-        }
-      }
-    },
-    "RendererAPI": {
-      "setPostEffect": {
-        param: {
-          "effect": {
-            type: "PostEffect"
-          }
-        }
-      }
-    },
   }
   function manageClass(Class) {
     //return string
     let r = ""
     //declare the class if this class doesnt represent global values.
-    if (!classOverrides[Class.name]?.global) {
+    if (!overrides[Class.name]?.global) {
       r +=
-        `---${classOverrides[Class.name]?.description ?? Class.description}\n` +
-        `---@class ${classOverrides[Class.name]?.name ?? Class.name}`
+        `---${overrides[Class.name]?.description ?? Class.description}\n` +
+        `---@class ${overrides[Class.name]?.name ?? Class.name}`
       //Add the parent class if it exists
       if (Class.parent)
-        r += ` : ${classOverrides[Class.parent]?.name ?? Class.parent}`
+        r += ` : ${overrides[Class.parent]?.name ?? Class.parent}`
       r += "\n"
     }
-    //Add the fields.
-    for (const field of Class.fields) {
-      r += fieldOverrides[Class.name]?.[field.name]?.override ?? (
-        classOverrides[Class.name]?.global ? (
-          //if this is a global class, represent all the fields as objects
-          `---${fieldOverrides[Class.name]?.[field.name]?.description ?? field.description}\n` +
-          `---@type ${fieldOverrides[Class.name]?.[field.name]?.type ?? typeOverrides[field.type] ?? field.type}\n` +
-          `${fieldOverrides[Class.name]?.[field.name]?.name ?? illegalParamNames[field.name] ?? field.name}={}\n`
-        ) : (
-          //otherwise, represent the fields as fields
-          `---@field ${fieldOverrides[Class.name]?.[field.name]?.name ?? illegalParamNames[field.name] ?? field.name} ` +
-          `${fieldOverrides[Class.name]?.[field.name]?.type ?? typeOverrides[field.type] ?? field.type} ` +
-          `${fieldOverrides[Class.name]?.[field.name]?.description ?? field.description}`
+    //Add the class fields so long as the override doesnt replace them
+    if (!overrides[Class.name]?.field?.replace) {
+      for (const field of Class.fields) {
+        r += overrides[Class.name]?.field?.[field.name]?.override ?? (
+          overrides[Class.name]?.global ? (
+            //if this is a global class, represent all the fields as objects
+            `---${overrides[Class.name]?.field?.[field.name]?.description ?? field.description}\n` +
+            `---@type ${overrides[Class.name]?.field?.[field.name]?.type ?? typeOverrides[field.type] ?? field.type}\n` +
+            `${overrides[Class.name]?.field?.[field.name]?.name ?? illegalParamNames[field.name] ?? field.name}={}\n`
+          ) : (
+            //otherwise, represent the fields as fields
+            `---@field ${overrides[Class.name]?.field?.[field.name]?.name ?? illegalParamNames[field.name] ?? field.name} ` +
+            `${overrides[Class.name]?.field?.[field.name]?.type ?? typeOverrides[field.type] ?? field.type} ` +
+            `${overrides[Class.name]?.field?.[field.name]?.description ?? field.description}`
+          )
         )
-      )
-      r += "\n"
+        r += "\n"
+      }
+    }
+    //Add fields defined in the override
+    if(overrides[Class.name]?.field?.fields){
+      for(const field of overrides[Class.name]?.field?.fields){
+        r+=field
+      }
     }
     //operators arent a part of the docs, so thay can only be added by override at the moment
-    if(classOverrides[Class.name]?.operator)
-      for(const operator of classOverrides[Class.name]?.operator)
-        r+=operator
+    if (overrides[Class.name]?.operator?.operators)
+      for (const operator of overrides[Class.name]?.operator?.operators)
+        r += operator
     //if this class doesnt represent global values, add an object to attach the class to
-    if (!classOverrides[Class.name]?.global)
+    if (!overrides[Class.name]?.global)
       r +=
-        `${!classOverrides[Class.name]?.nonLocal ? "local " : ""}` +
-        `${classOverrides[Class.name]?.name ?? Class.name}={}\n\n`
+        `${!overrides[Class.name]?.nonLocal ? "local " : ""}` +
+        `${overrides[Class.name]?.name ?? Class.name}={}\n\n`
     for (const method of Class.methods) {
-      r += `---${methodOverrides[Class.name]?.[method.name]?.description ?? method.description}\n`
+      r += `---${overrides[Class.name]?.method?.[method.name]?.description ?? method.description}\n`
       //add the first overload's parameters as normal
       for (const param of method.parameters[0]) {
         r +=
-          `---@param ${methodOverrides[Class.name]?.[method.name]?.param?.[param.name]?.name ?? illegalParamNames[param.name] ?? param.name} ` +
-          `${methodOverrides[Class.name]?.[method.name]?.param?.[param.name]?.type ?? typeOverrides[param.type] ?? param.type}\n`
+          `---@param ${overrides[Class.name]?.method?.[method.name]?.param?.[param.name]?.name ?? illegalParamNames[param.name] ?? param.name} ` +
+          `${overrides[Class.name]?.method?.[method.name]?.param?.[param.name]?.type ?? typeOverrides[param.type] ?? param.type}\n`
       }
       //add return type for the first overload
-      r += `---@return ${methodOverrides[Class.name]?.[method.name]?.return ?? typeOverrides[method.returns[0]] ?? method.returns[0]}\n`
+      r += `---@return ${overrides[Class.name]?.method?.[method.name]?.return ?? typeOverrides[method.returns[0]] ?? method.returns[0]}\n`
       //add all other overloads when not replacing them
-      if (!methodOverrides[Class.name]?.[method.name]?.overload?.replace) {
+      if (!overrides[Class.name]?.method?.[method.name]?.overload?.replace) {
         for (let overloadIndex = 1; overloadIndex < method.parameters.length; overloadIndex++) {
           r += `---@overload fun(`
           let notFirst = false
@@ -354,31 +396,31 @@
             if (notFirst)
               r += `, `;
             r +=
-              `${methodOverrides[Class.name]?.[method.name]?.param?.[param.name]?.name ?? illegalParamNames[param.name] ?? param.name}:` +
-              `${methodOverrides[Class.name]?.[method.name]?.param?.[param.name]?.type ?? typeOverrides[param.type] ?? param.type}`;
+              `${overrides[Class.name]?.method?.[method.name]?.param?.[param.name]?.name ?? illegalParamNames[param.name] ?? param.name}:` +
+              `${overrides[Class.name]?.method?.[method.name]?.param?.[param.name]?.type ?? typeOverrides[param.type] ?? param.type}`;
             notFirst = true
           }
           //add the return type of these overloads
-          r += `):${methodOverrides[Class.name]?.[method.name]?.return ?? typeOverrides[method.returns[overloadIndex]] ?? method.returns[overloadIndex]}\n`
+          r += `):${overrides[Class.name]?.method?.[method.name]?.return ?? typeOverrides[method.returns[overloadIndex]] ?? method.returns[overloadIndex]}\n`
         }
       }
       //add overloads defined in the overrides
-      if (methodOverrides[Class.name]?.[method.name]?.overload?.overloads) {
-        for (const overload of methodOverrides[Class.name]?.[method.name]?.overload?.overloads) {
+      if (overrides[Class.name]?.method?.[method.name]?.overload?.overloads) {
+        for (const overload of overrides[Class.name]?.method?.[method.name]?.overload?.overloads) {
           r += overload
         }
       }
       //declare the main function, using the first overload
       {
         r +=
-          `function ${!classOverrides[Class.name]?.global ? `${classOverrides[Class.name]?.name ?? Class.name}.` : ""}` +
-          `${methodOverrides[Class.name]?.[method.name]?.name ?? method.name}(`
+          `function ${!overrides[Class.name]?.global ? `${overrides[Class.name]?.name ?? Class.name}.` : ""}` +
+          `${overrides[Class.name]?.method?.[method.name]?.name ?? method.name}(`
         let notFirst = false
         let param0 = method.parameters[0]
         for (const param of param0) {
           if (notFirst)
             r += ", ";
-          r += methodOverrides[Class.name]?.[method.name]?.param?.[param.name]?.name ?? illegalParamNames[param.name] ?? param.name
+          r += overrides[Class.name]?.method?.[method.name]?.param?.[param.name]?.name ?? illegalParamNames[param.name] ?? param.name
           notFirst = true
         }
         r += ") end\n"
@@ -389,8 +431,8 @@
   }
   function manageAlias(Class) {
     let r =
-      `---${classOverrides[Class.name]?.description ?? Class.description}\n` +
-      `---@alias ${classOverrides[Class.name]?.name ?? Class.name}\n`
+      `---${overrides[Class.name]?.description ?? Class.description}\n` +
+      `---@alias ${overrides[Class.name]?.name ?? Class.name}\n`
     for (const entry of Class.entries) {
       r += `---| '"${entry}"'\n`
     }
