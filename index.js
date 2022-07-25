@@ -31,7 +31,7 @@
         },
         "animation": {
           name: "animations",
-          type: "table<string,Animation>"
+          type: "table<string,table<string,Animation>>"
         }
       }
     },
