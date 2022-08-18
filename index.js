@@ -1,18 +1,4 @@
 {
-  const illegalParamNames = {
-    "function": "_function"
-  }
-  const typeOverrides = {
-    "Boolean": "boolean",
-    "Integer": "integer",
-    "Number": "number",
-    "String": "string",
-    "Table": "table",
-    "Function": "function",
-    "Userdata": "userdata",
-    "AnyType": "any",
-    "Vector": "Vector2|Vector3|Vector4|Vector5|Vector6"
-  }
   const overrides = {
     "globals": {
       global: true,
@@ -329,132 +315,97 @@
       }
     }
   }
-  function manageClass(Class) {
-    //return string
-    let r = ""
-    //declare the class if this class doesnt represent global values.
-    if (!overrides[Class.name]?.global) {
-      r +=
-        `---${overrides[Class.name]?.description ?? Class.description}\n` +
-        `---@class ${overrides[Class.name]?.name ?? Class.name}`
-      //Add the parent class if it exists
-      if (Class.parent)
-        r += ` : ${overrides[Class.parent]?.name ?? Class.parent}`
-      r += "\n"
-    }
-    //Add the class fields so long as the override doesnt replace them
-    if (!overrides[Class.name]?.field?.replace) {
-      for (const field of Class.fields) {
-        r += overrides[Class.name]?.field?.[field.name]?.override ?? (
-          overrides[Class.name]?.global ? (
-            //if this is a global class, represent all the fields as objects
-            `---${overrides[Class.name]?.field?.[field.name]?.description ?? field.description}\n` +
-            `---@type ${overrides[Class.name]?.field?.[field.name]?.type ?? typeOverrides[field.type] ?? field.type}\n` +
-            `${overrides[Class.name]?.field?.[field.name]?.name ?? illegalParamNames[field.name] ?? field.name}={}\n`
-          ) : (
-            //otherwise, represent the fields as fields
-            `---@field ${overrides[Class.name]?.field?.[field.name]?.name ?? illegalParamNames[field.name] ?? field.name} ` +
-            `${overrides[Class.name]?.field?.[field.name]?.type ?? typeOverrides[field.type] ?? field.type} ` +
-            `${overrides[Class.name]?.field?.[field.name]?.description ?? field.description}`
-          )
-        )
-        r += "\n"
-      }
-    }
-    //Add fields defined in the override
-    if(overrides[Class.name]?.field?.fields){
-      for(const field of overrides[Class.name]?.field?.fields){
-        r+=field
-      }
-    }
-    //operators arent a part of the docs, so thay can only be added by override at the moment
-    if (overrides[Class.name]?.operator?.operators)
-      for (const operator of overrides[Class.name]?.operator?.operators)
-        r += operator
-    //if this class doesnt represent global values, add an object to attach the class to
-    if (!overrides[Class.name]?.global)
-      r +=
-        `${!overrides[Class.name]?.nonLocal ? "local " : ""}` +
-        `${overrides[Class.name]?.name ?? Class.name}={}\n\n`
-    for (const method of Class.methods) {
-      r += `---${overrides[Class.name]?.method?.[method.name]?.description ?? method.description}\n`
-      //add the first overload's parameters as normal
-      for (const param of method.parameters[0]) {
-        r +=
-          `---@param ${overrides[Class.name]?.method?.[method.name]?.param?.[param.name]?.name ?? illegalParamNames[param.name] ?? param.name} ` +
-          `${overrides[Class.name]?.method?.[method.name]?.param?.[param.name]?.type ?? typeOverrides[param.type] ?? param.type}\n`
-      }
-      //add return type for the first overload
-      r += `---@return ${overrides[Class.name]?.method?.[method.name]?.return ?? typeOverrides[method.returns[0]] ?? method.returns[0]}\n`
-      //add all other overloads when not replacing them
-      if (!overrides[Class.name]?.method?.[method.name]?.overload?.replace) {
-        for (let overloadIndex = 1; overloadIndex < method.parameters.length; overloadIndex++) {
-          r += `---@overload fun(`
-          let notFirst = false
-          //add parameters of overloads
-          for (const param of method.parameters[overloadIndex]) {
-            if (notFirst)
-              r += `, `;
-            r +=
-              `${overrides[Class.name]?.method?.[method.name]?.param?.[param.name]?.name ?? illegalParamNames[param.name] ?? param.name}:` +
-              `${overrides[Class.name]?.method?.[method.name]?.param?.[param.name]?.type ?? typeOverrides[param.type] ?? param.type}`;
-            notFirst = true
-          }
-          //add the return type of these overloads
-          r += `):${overrides[Class.name]?.method?.[method.name]?.return ?? typeOverrides[method.returns[overloadIndex]] ?? method.returns[overloadIndex]}\n`
-        }
-      }
-      //add overloads defined in the overrides
-      if (overrides[Class.name]?.method?.[method.name]?.overload?.overloads) {
-        for (const overload of overrides[Class.name]?.method?.[method.name]?.overload?.overloads) {
-          r += overload
-        }
-      }
-      //declare the main function, using the first overload
-      {
-        r +=
-          `function ${!overrides[Class.name]?.global ? `${overrides[Class.name]?.name ?? Class.name}.` : ""}` +
-          `${overrides[Class.name]?.method?.[method.name]?.name ?? method.name}(`
-        let notFirst = false
-        let param0 = method.parameters[0]
-        for (const param of param0) {
-          if (notFirst)
-            r += ", ";
-          r += overrides[Class.name]?.method?.[method.name]?.param?.[param.name]?.name ?? illegalParamNames[param.name] ?? param.name
-          notFirst = true
-        }
-        r += ") end\n"
-      }
-      r += "\n"
-    }
-    return r
+  const typeOverrides = {
+    "Boolean": "boolean",
+    "Integer": "integer",
+    "Number": "number",
+    "String": "string",
+    "Table": "table",
+    "Function": "function",
+    "Userdata": "userdata",
+    "AnyType": "any",
+    //"Vector": "Vector2|Vector3|Vector4|Vector5|Vector6"
   }
-  function manageAlias(Class) {
-    let r =
-      `---${overrides[Class.name]?.description ?? Class.description}\n` +
-      `---@alias ${overrides[Class.name]?.name ?? Class.name}\n`
-    for (const entry of Class.entries) {
-      r += `---| '"${entry}"'\n`
-    }
-    r += "\n"
-    return r
+  function doType(type){
+    return typeOverrides[type]??type
   }
+  function doFunction(name,description,params,returns,static,className){
+    let r=`---${description}\n`
+    for(const param of params){
+      r+=`---@param ${param.name} ${doType(param.type)}\n`
+    }
+    r+=`---@return ${doType(returns)}\n`
 
-  function createDocs(json) {
-    let docs = {}
-    for (const [namespace, classArray] of Object.entries(json)) {
-      let out = ""
-      for (const Class of classArray) {
-        if (!Class.entries)
-          out += manageClass(Class)
-        else
-          out += manageAlias(Class)
+    r+=`function `
+    if(className)
+      r+=`${className+(static?".":":")}`
+    r+=`${name}(`
+    let f=true
+    for(const param of params){
+      if(!f){
+        r+=`, `
       }
-      docs[(namespace == "" ? "global" : namespace) + ".lua"] = out
+      r+=param.name
+      f=false
     }
+    r+=`) end\n`
+    return r
+  }
+  function doMethod(method,className){
+    let r=''
+    for(let i=0;i<method.parameters.length;i++){
+      r+=doFunction(method.name,method.description,method.parameters[i],method.returns[i],method.static,className)
+    }
+    return r
+  }
+  function doField(field){
+    return `---@field ${field.name} ${doType(field.type)} ${field.description}\n`
+  }
+  function doClass(clazz,global){
+    global??=false
+    let r=`---${clazz.description}\n---@class ${clazz.name}${clazz.parent?`:${clazz.parent}`:""}\n`
+    for(const field of clazz.fields)
+      r+=doField(field)
+    if(!global)
+      r+=`local `
+    r+=`${clazz.name}={}\n`
+    for(const method of clazz.methods)
+      r+=doMethod(method,clazz.name)
+    return r
+  }
+  function doList(list){
+    let r=`---${list.description}\n---@alias ${list.name}\n`
+    for(const entry of list.entries)
+      r+=`---| '${entry}'\n`
+    return r
+  }
+  function doGlobals(global){
+    let r=""
+    for(const field of global.fields){
+      r+=`---${field.description}\n---@type ${doType(field.type)}\n${field.name}={}\n`
+    }
+    for(const method of global.methods){
+      r+=doMethod(method)
+    }
+    return r
+  }
+  function createDocs(json) {
+    let docs = {
+      "global.lua":doGlobals(json.globals),
+      "math.lua":doClass(json.math,true)
+    }
+    for(const global of json.globals.fields){
+      switch(global.type){
+        case "Function","Table":continue
+        default:break
+      }
+      for(const clazz of global.children)
+        docs[`${clazz.name}.lua`]=`---@diagnostic disable: duplicate-set-field\n${doClass(clazz)}`
+    }
+    for(const list of json.lists)
+      docs[`${list.name}.lua`]=doList(list)
     return docs
   }
-
   function unpackDocs(docs) {
     let r = ""
     for (const [fileName, contents] of Object.entries(docs)) {
@@ -489,7 +440,7 @@
       if (isDownload.checked) {
         let i = 0
         for (const [fileName, fileContents] of Object.entries(docs)) {
-          setTimeout(downloadFile, i * 500, fileContents, fileName)
+          setTimeout(downloadFile, i * 200, fileContents, fileName)
           i++
         }
       }
