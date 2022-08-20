@@ -1,5 +1,5 @@
 {
-  const overrides = {
+  /*const overrides = {
     "globals": {
       global: true,
       field: {
@@ -314,7 +314,7 @@
         ]
       }
     }
-  }
+  }*/
   const typeOverrides = {
     "Boolean": "boolean",
     "Integer": "integer",
@@ -323,8 +323,7 @@
     "Table": "table",
     "Function": "function",
     "Userdata": "userdata",
-    "AnyType": "any",
-    //"Vector": "Vector2|Vector3|Vector4|Vector5|Vector6"
+    "AnyType": "any"
   }
   function doType(type){
     return typeOverrides[type]??type
