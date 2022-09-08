@@ -325,85 +325,85 @@
     "Userdata": "userdata",
     "AnyType": "any"
   }
-  function doType(type){
-    return typeOverrides[type]??type
+  function doType(type) {
+    return typeOverrides[type] ?? type
   }
-  function doFunction(name,description,params,returns,static,className){
-    let r=`---${description}\n`
-    for(const param of params){
-      r+=`---@param ${param.name} ${doType(param.type)}\n`
+  function doFunction(name, description, params, returns, static, className) {
+    let r = `---${description}\n`
+    for (const param of params) {
+      r += `---@param ${param.name} ${doType(param.type)}\n`
     }
-    r+=`---@return ${doType(returns)}\n`
+    r += `---@return ${doType(returns)}\n`
 
-    r+=`function `
-    if(className)
-      r+=`${className+(static?".":":")}`
-    r+=`${name}(`
-    let f=true
-    for(const param of params){
-      if(!f){
-        r+=`, `
+    r += `function `
+    if (className)
+      r += `${className + (static ? "." : ":")}`
+    r += `${name}(`
+    let f = true
+    for (const param of params) {
+      if (!f) {
+        r += `, `
       }
-      r+=param.name
-      f=false
+      r += param.name
+      f = false
     }
-    r+=`) end\n`
+    r += `) end\n`
     return r
   }
-  function doMethod(method,className){
-    let r=''
-    for(let i=0;i<method.parameters.length;i++){
-      r+=doFunction(method.name,method.description,method.parameters[i],method.returns[i],method.static,className)
+  function doMethod(method, className) {
+    let r = ''
+    for (let i = 0; i < method.parameters.length; i++) {
+      r += doFunction(method.name, method.description, method.parameters[i], method.returns[i], method.static, className)
     }
     return r
   }
-  function doField(field){
+  function doField(field) {
     return `---@field ${field.name} ${doType(field.type)} ${field.description}\n`
   }
-  function doClass(clazz,global){
-    global??=false
-    let r=`---${clazz.description}\n---@class ${clazz.name}${clazz.parent?`:${clazz.parent}`:""}\n`
-    for(const field of clazz.fields)
-      r+=doField(field)
-    if(!global)
-      r+=`local `
-    r+=`${clazz.name}={}\n`
-    for(const method of clazz.methods)
-      r+=doMethod(method,clazz.name)
+  function doClass(clazz, global) {
+    global ??= false
+    let r = `---${clazz.description}\n---@class ${clazz.name}${clazz.parent ? `:${clazz.parent}` : ""}\n`
+    for (const field of clazz.fields)
+      r += doField(field)
+    if (!global)
+      r += `local `
+    r += `${clazz.name}={}\n`
+    for (const method of clazz.methods)
+      r += doMethod(method, clazz.name)
     return r
   }
-  function doList(list){
-    let r=`---${list.description}\n---@alias ${list.name}\n`
-    for(const entry of list.entries)
-      r+=`---| '${entry}'\n`
+  function doList(list) {
+    let r = `---${list.description}\n---@alias ${list.name}\n`
+    for (const entry of list.entries)
+      r += `---| '${entry}'\n`
     return r
   }
-  function doGlobals(global){
-    let r=""
-    for(const field of global.fields){
-      r+=`---${field.description}\n---@type ${doType(field.type)}\n${field.name}={}\n`
+  function doGlobals(global) {
+    let r = ""
+    for (const field of global.fields) {
+      r += `---${field.description}\n---@type ${doType(field.type)}\n${field.name}={}\n`
     }
-    for(const method of global.methods){
-      r+=doMethod(method)
+    for (const method of global.methods) {
+      r += doMethod(method)
     }
     return r
   }
   function createDocs(json) {
     let docs = {
-      "global.lua":doGlobals(json.globals),
-      "math.lua":doClass(json.math,true)
+      "global.lua": doGlobals(json.globals),
+      "math.lua": doClass(json.math, true)
     }
-    for(const global of json.globals.fields){
-      switch(global.type){
-        case "Function":continue
-        default:break
+    for (const global of json.globals.fields) {
+      switch (global.type) {
+        case "Function": continue
+        default: break
       }
-      if(global.name=="figuraMetatables")continue
-      for(const clazz of global.children)
-        docs[`${clazz.name}.lua`]=`---@diagnostic disable: duplicate-set-field\n${doClass(clazz)}`
+      if (global.name == "figuraMetatables") continue
+      for (const clazz of global.children)
+        docs[`${clazz.name}.lua`] = `---@diagnostic disable: duplicate-set-field\n${doClass(clazz)}`
     }
-    for(const list of json.lists)
-      docs[`${list.name}.lua`]=doList(list)
+    for (const list of json.lists)
+      docs[`${list.name}.lua`] = doList(list)
     return docs
   }
   function unpackDocs(docs) {
