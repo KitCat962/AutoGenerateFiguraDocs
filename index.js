@@ -395,9 +395,10 @@
     }
     for(const global of json.globals.fields){
       switch(global.type){
-        case "Function","Table":continue
+        case "Function":continue
         default:break
       }
+      if(global.name=="figuraMetatables")continue
       for(const clazz of global.children)
         docs[`${clazz.name}.lua`]=`---@diagnostic disable: duplicate-set-field\n${doClass(clazz)}`
     }
