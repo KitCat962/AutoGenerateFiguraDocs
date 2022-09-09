@@ -1,68 +1,370 @@
 {
   const overrides = {
-    _aClass: [],
-    _rClass: {},
-    "global": {
-      _aField: [],
-      _rField: {
-        "vec": {
-          delete: true
+    addClass: [],
+    modifyClass: {
+      "globals": {
+        modifyField: {
+          "vec": {
+            delete: true
+          },
+          "animations": {
+            type: "table<string,table<string,Animation>>"
+          },
+          "figuraMetatables": {
+            type: "table<Classes,{__index:table|function,__newindex:function,__tostring:function,__add:funtion,__sub:function,__mul:function,__div:function,__mod:function,__eq:function,__lt:function,__le:function,__unm:function,__len:function}>"
+          },
+          "type": {
+            delete: true
+          }
         },
-        "animations": {
-          type: "table<string,table<string,Animation>>"
-        },
-        "figuraMetatables": {
-          type: "table<string,{__index:table|function,__newindex:function,__tostring:function,__add:funtion,__sub:function,__mul:function,__div:function,__mod:function,__eq:function,__lt:function,__le:function,__unm:function,__len:function}>"
+        addMethod: [
+          {
+            name: "vec",
+            description: "An alias for \"vectors.vec\", since it's used so often.",
+            parameters: [
+              [
+                { name: 'x', type: 'Number' },
+                { name: 'y', type: 'Number' }
+              ],
+              [
+                { name: 'x', type: 'Number' },
+                { name: 'y', type: 'Number' },
+                { name: 'z', type: 'Number' }
+              ],
+              [
+                { name: 'x', type: 'Number' },
+                { name: 'y', type: 'Number' },
+                { name: 'z', type: 'Number' },
+                { name: 'w', type: 'Number' }
+              ],
+              [
+                { name: 'x', type: 'Number' },
+                { name: 'y', type: 'Number' },
+                { name: 'z', type: 'Number' },
+                { name: 'w', type: 'Number' },
+                { name: 't', type: 'Number' }
+              ],
+              [
+                { name: 'x', type: 'Number' },
+                { name: 'y', type: 'Number' },
+                { name: 'z', type: 'Number' },
+                { name: 'w', type: 'Number' },
+                { name: 't', type: 'Number' },
+                { name: 'h', type: 'Number' }
+              ]
+            ],
+            returns: [
+              'Vector2',
+              'Vector3',
+              'Vector4',
+              'Vector5',
+              'Vector6'
+            ],
+            static: true
+          },
+          {
+            name: "type",
+            description: "Figura overrides lua's type() function. When used on Figura types, returns the type's name as seen in the docs and in the figuraMetatables global. When called on a table that has a metatable with a __type key, returns the corresponding value.",
+            parameters: [
+              [
+                { name: "var", type: "AnyType" }
+              ]
+            ],
+            returns: [
+              'Classes | "nil" | "number" | "string" | "boolean" | "table" | "function" | "thread" | "userdata"'
+            ]
+          }
+        ],
+        modifyMethod: {}
+      },
+      "Animation": {
+        modifyMethod: {
+          "loop": {
+            parameters: {
+              0: {
+                0: {
+                  type: "LoopModes"
+                }
+              }
+            }
+          },
+          "getPlayState":{
+            returns:["PlayStates"]
+          },
+          "getLoop":{
+            returns:["LoopModes"]
+          }
         }
       },
-      _aMethod: [
-        {
-          name: "vec",
-          description: "An alias for \"vectors.vec\", since it's used so often.",
-          parameters: [
-            [
-              { name: 'x', type: 'Number' },
-              { name: 'y', type: 'Number' }
-            ],
-            [
-              { name: 'x', type: 'Number' },
-              { name: 'y', type: 'Number' },
-              { name: 'z', type: 'Number' }
-            ],
-            [
-              { name: 'x', type: 'Number' },
-              { name: 'y', type: 'Number' },
-              { name: 'z', type: 'Number' },
-              { name: 'w', type: 'Number' }
-            ],
-            [
-              { name: 'x', type: 'Number' },
-              { name: 'y', type: 'Number' },
-              { name: 'z', type: 'Number' },
-              { name: 'w', type: 'Number' },
-              { name: 't', type: 'Number' }
-            ],
-            [
-              { name: 'x', type: 'Number' },
-              { name: 'y', type: 'Number' },
-              { name: 'z', type: 'Number' },
-              { name: 'w', type: 'Number' },
-              { name: 't', type: 'Number' },
-              { name: 'h', type: 'Number' }
-            ]
-          ],
-          returns: [
-            'Vector2',
-            'Vector3',
-            'Vector4',
-            'Vector5',
-            'Vector6'
-          ],
-          static: true
+      "WorldAPI": {
+        modifyMethod: {
+          "getPlayers": {
+            returns: ["Player[]"]
+          },
+          "playerVars": {
+            returns: ["table<string,table>"]
+          }
         }
-      ],
-      _rMethod: {}
-    }
+      },
+      "Biome":{
+        modifyMethod:{
+          "getPrecipitation":{
+            returns:['"NONE" | "RAIN" | "SNOW"']
+          }
+        }
+      },
+      "BlockState": {
+        modifyMethod: {
+          "getTags": {
+            returns: ["string[]"]
+          },
+          "getOutlineShape": {
+            returns: ["Vector6[]"]
+          },
+          "getCollisionShape": {
+            returns: ["Vector6[]"]
+          },
+          "getFluidTags": {
+            returns: ["string[]"]
+          },
+          "getEntityData": {
+            returns: ["string[]"]
+          },
+          "getSounds": {
+            returns: ["{pitch:number,volume:number,hit:string,fall:string,plate:string,step:string,break:string}"]
+          }
+        }
+      },
+      "ItemStack": {
+        modifyMethod: {
+          "getTags": {
+            returns: ["string[]"]
+          },
+          "getUseAction":{
+            returns:['"NONE" | "EAT" | "DRINK" | "BOW" | "CROSSBOW" | "BLOCK" | "SPEAR" | "SPYGLASS"']
+          },
+          "getRarity": {
+            returns: ['string|"COMMON"|"UNCOMMON"|"RARE"|"EPIC"']
+          }
+        }
+      },
+      "ModelPart": {
+        addField: [
+          {
+            name: "[string]",
+            type: "ModelPart",
+            description: "Children of ModelParts can be accessed by indexing their names from their Parent."
+          }
+        ],
+        modifyMethod: {
+          "getType":{
+            returns:['"GROUP" | "CUBE" | "MESH"']
+          },
+          "getChildren": {
+            returns: ["ModelPart[]"]
+          },
+          "addItem":{
+            returns:["ItemTask"]
+          },
+          "addBlock":{
+            returns:["BlockTask"]
+          },
+          "addText":{
+            returns:["TextTask"]
+          },
+          "getTask": {
+            returns: { 0: "RenderTask[]" }
+          },
+          "setPrimaryTexture":{
+            parameters:{
+              0:{0:{type:"TextureTypes"}},
+              1:{0:{type:"TextureTypes"}}
+            }
+          },
+          "setSecondaryTexture":{
+            parameters:{
+              0:{0:{type:"TextureTypes"}},
+              1:{0:{type:"TextureTypes"}}
+            }
+          },
+          "setPrimaryRenderType":{
+            parameters:{
+              0:{0:{type:"RenderTypes"}}
+            }
+          },
+          "setSecondaryRenderType":{
+            parameters:{
+              0:{0:{type:"RenderTypes"}}
+            }
+          },
+          "getPrimaryRenderType":{
+            returns:["RenderTypes"]
+          },
+          "getSecondaryRenderType":{
+            returns:["RenderTypes"]
+          },
+          "getParentType":{
+            returns:["ParentTypes"]
+          },
+          "setParentType":{
+            parameters:{0:{0:{type:"ParentTypes"}}}
+          }
+        }
+      },
+      "BlockTask":{
+        modifyMethod:{
+          "block":{
+            returns:["BlockTask","BlockTask"]
+          },
+          "scale":{
+            returns:["BlockTask","BlockTask"]
+          },
+          "enabled":{
+            returns:["BlockTask"]
+          },
+          "pos":{
+            returns:["BlockTask","BlockTask"]
+          },
+          "rot":{
+            returns:["BlockTask","BlockTask"]
+          },
+          "emissive":{
+            returns:["BlockTask","BlockTask"]
+          },
+        }
+      },
+      "ItemTask":{
+        modifyMethod:{
+          "item":{
+            returns:["ItemTask","ItemTask"]
+          },
+          "scale":{
+            returns:["ItemTask","ItemTask"]
+          },
+          "enabled":{
+            returns:["ItemTask"]
+          },
+          "pos":{
+            returns:["ItemTask","ItemTask"]
+          },
+          "rot":{
+            returns:["ItemTask","ItemTask"]
+          },
+          "emissive":{
+            returns:["ItemTask","ItemTask"]
+          },
+          "renderType":{
+            parameters:{0:{0:{type:"ItemRenderTypes"}}},
+            returns:["ItemTask"]
+          },
+          "getRenderType":{
+            returns:["ItemRenderTypes"]
+          }
+        }
+      },
+      "TextTask":{
+        modifyMethod:{
+          "text":{
+            returns:["TextTask"]
+          },
+          "shadow":{
+            returns:["TextTask"]
+          },
+          "outline":{
+            returns:["TextTask"]
+          },
+          "centered":{
+            returns:["TextTask"]
+          },
+          "scale":{
+            returns:["TextTask","TextTask"]
+          },
+          "enabled":{
+            returns:["TextTask"]
+          },
+          "pos":{
+            returns:["TextTask","TextTask"]
+          },
+          "rot":{
+            returns:["TextTask","TextTask"]
+          },
+          "emissive":{
+            returns:["TextTask","TextTask"]
+          },
+        }
+      },
+      "EntityAPI":{
+        modifyMethod:{
+          "getPose":{
+            returns:["EntityPoses"]
+          }
+        }
+      },
+      "LivingEntityAPI": {
+        modifyMethod: {
+          "getStatusEffects": {
+            returns: ["{visible:boolean,duration:number,amplifier:number,name:string}[]"]
+          },
+          "getActiveHand":{
+            returns:['"MAIN_HAND" | "OFF_HAND"']
+          },
+          "getPose":{
+            returns:["EntityPoses"]
+          }
+        }
+      },
+      "PlayerAPI": {
+        modifyMethod: {
+          "isSkinLayerVisible":{
+            parameters:{0:{0:{type:"PlayerModelParts"}}}
+          },
+          "getModelType":{
+            returns:['"DEFAULT" | "SLIM"']
+          },
+          "getGamemode":{
+            returns:['"SURVIVAL" | "CREATIVE" | "ADVENTURE" | "SPECTATOR"']
+          },
+          "getStatusEffects": {
+            returns: ["{visible:boolean,duration:number,amplifier:number,name:string}[]"]
+          },
+          "getActiveHand":{
+            returns:['"MAIN_HAND" | "OFF_HAND"']
+          },
+          "getPose":{
+            returns:["EntityPoses"]
+          }
+        }
+      },
+      "KeybindAPI":{
+        modifyMethod:{
+          "create":{
+            parameters:{
+              0:{1:{type:"Keybinds"}},
+              1:{1:{type:"Keybinds"}},
+              2:{1:{type:"Keybinds"}},
+            }
+          },
+          "getVanillaKey":{
+            parameters:{
+              0:{0:{type:"KeyIDs"}}
+            },
+            returns:["Keybinds"]
+          }
+        }
+      },
+      "Keybind":{
+        modifyMethod:{
+          "getKey":{
+            returns:["Keybinds"]
+          },
+          "setKey":{
+            parameters:{
+              0:{0:{type:"Keybinds"}}
+            }
+          }
+        }
+      }
+    },
   }
   const typeOverrides = {
     "Boolean": "boolean",
@@ -111,14 +413,54 @@
   }
   function doClass(clazz, global) {
     global ??= false
+    const classOverride = overrides?.modifyClass[clazz.name]
     let r = `---${clazz.description}\n---@class ${clazz.name}${clazz.parent ? `:${clazz.parent}` : ""}\n`
-    for (const field of clazz.fields)
+    for (const _field of clazz.fields) {
+      const fieldOverride = classOverride?.modifyField?.[_field.name]
+      if (fieldOverride?.delete) continue
+      const field = {}
+      for (const [index, value] of Object.entries(_field))
+        field[index] = fieldOverride?.[index] ?? value
       r += doField(field)
+    }
+    if (classOverride?.addField)
+      for (const field of classOverride?.addField)
+        r += doField(field)
     if (!global)
       r += `local `
     r += `${clazz.name}={}\n`
-    for (const method of clazz.methods)
+    for (const _method of clazz.methods) {
+      const methodOverride = classOverride?.modifyMethod?.[_method.name]
+      if (methodOverride?.delete) continue
+      const method = {}
+      for (const [index, value] of Object.entries(_method)) {
+        switch (index) {
+          case "parameters":
+            method[index] = []
+            for (let i = 0; i < value.length; i++) {
+              method[index][i] = []
+              for (let o = 0; o < value[i].length; o++) {
+                method[index][i][o] = {}
+                for (const [paramIndex, paramValue] of Object.entries(value[i][o]))
+                  method[index][i][o][paramIndex] = methodOverride?.[index]?.[i]?.[o]?.[paramIndex] ?? paramValue
+              }
+            }
+            break
+          case "returns":
+            method[index] = []
+            for (let i = 0; i < value.length; i++)
+              method[index][i] = methodOverride?.[index]?.[i] ?? value[i]
+            break
+          default:
+            method[index] = methodOverride?.[index] ?? value
+            break
+        }
+      }
       r += doMethod(method, clazz.name)
+    }
+    if (classOverride?.addMethod)
+      for (const method of classOverride?.addMethod)
+        r += doMethod(method, clazz.name)
     return r
   }
   function doList(list) {
@@ -129,18 +471,53 @@
   }
   function doGlobals(global) {
     let r = ""
+    const globalOverride = overrides?.modifyClass[global.name]
     for (const field of global.fields) {
-      r += `---${field.description}\n---@type ${doType(field.type)}\n${field.name}={}\n`
+      const fieldOverride = globalOverride?.modifyField?.[field.name]
+      if (fieldOverride?.delete) continue
+      r += `---${fieldOverride?.description ?? field.description}\n---@type ${fieldOverride?.type ?? doType(field.type)}\n${fieldOverride?.name ?? field.name}={}\n`
     }
-    for (const method of global.methods) {
+    if (globalOverride?.addField)
+      for (const field of globalOverride?.addField)
+        r += `---${field.description}\n---@type ${doType(field.type)}\n${field.name}={}\n`
+    for (const _method of global.methods) {
+      const methodOverride = globalOverride?.modifyMethod?.[_method.name]
+      if (methodOverride?.delete) continue
+      const method = {}
+      for (const [index, value] of Object.entries(_method)) {
+        switch (index) {
+          case "parameters":
+            method[index] = []
+            for (let i = 0; i < value.length; i++) {
+              method[index][i] = []
+              for (let o = 0; o < value[i].length; o++) {
+                method[index][i][o] = {}
+                for (const [paramIndex, paramValue] of Object.entries(value[i][o]))
+                  method[index][i][o][paramIndex] = methodOverride?.[index]?.[i]?.[o]?.[paramIndex] ?? paramValue
+              }
+            }
+            break
+          case "returns":
+            method[index] = []
+            for (let i = 0; i < value.length; i++)
+              method[index][i] = methodOverride?.[index]?.[i] ?? value[i]
+            break
+          default:
+            method[index] = methodOverride?.[index] ?? value
+            break
+        }
+      }
       r += doMethod(method)
     }
+    if (globalOverride?.addMethod)
+      for (const method of globalOverride?.addMethod)
+        r += doMethod(method)
     return r
   }
   function createDocs(json) {
     let docs = {
-      "global.lua": doGlobals(json.globals),
-      "math.lua": doClass(json.math, true)
+      "global.lua": `---@diagnostic disable: duplicate-set-field\n${doGlobals(json.globals)}`,
+      "math.lua": `---@diagnostic disable: duplicate-set-field\n${doClass(json.math, true)}`
     }
     let classNameList = {
       name: "Classes",
@@ -196,14 +573,14 @@
       a = json
       let docs = createDocs(json)
       if (isDownload.checked) {
-        let files=[]
+        let files = []
         for (const [fileName, fileContents] of Object.entries(docs)) {
           files.push({
-            name:fileName,
-            input:fileContents
+            name: fileName,
+            input: fileContents
           })
         }
-        downloadFiles(files,"docs.zip")
+        downloadFiles(files, "docs.zip")
       }
       textbox.value = unpackDocs(docs)
       textbox.style.height = 'auto';
