@@ -1,320 +1,69 @@
 {
-  /*const overrides = {
-    "globals": {
-      global: true,
-      field: {
+  const overrides = {
+    _aClass: [],
+    _rClass: {},
+    "global": {
+      _aField: [],
+      _rField: {
         "vec": {
-          override:
-            `---An alias for "vectors.vec", since it's used so often.\n` +
-            `---@param x number\n` +
-            `---@param y number\n` +
-            `---@return Vector2\n` +
-            `---@overload fun(x:number, y:number, z:number):Vector3\n` +
-            `---@overload fun(x:number, y:number, z:number, w:number):Vector4\n` +
-            `---@overload fun(x:number, y:number, z:number, w:number, t:number):Vector5\n` +
-            `---@overload fun(x:number, y:number, z:number, w:number, t:number, h:number):Vector6\n` +
-            `function vec(x, y) end\n`
+          delete: true
         },
-        "animation": {
-          name: "animations",
+        "animations": {
           type: "table<string,table<string,Animation>>"
-        }
-      }
-    },
-    "math": {
-      nonLocal: true,
-      method: {
-        "lerp": {
-          overload: {
-            replace: true,
-            overloads: [
-              `---@overload fun(a:Vector2,b:Vector2,t:number):Vector2\n`,
-              `---@overload fun(a:Vector3,b:Vector3,t:number):Vector3\n`,
-              `---@overload fun(a:Vector4,b:Vector4,t:number):Vector4\n`,
-              `---@overload fun(a:Vector5,b:Vector5,t:number):Vector5\n`,
-              `---@overload fun(a:Vector6,b:Vector6,t:number):Vector6\n`
-            ]
-          }
-        }
-      }
-    },
-    "Animation": {
-      method: {
-        "getPlayState": {
-          return: "PlayState"
         },
-        "loop": {
-          param: {
-            "loop": {
-              type: "LoopMode"
-            }
-          }
+        "figuraMetatables": {
+          type: "table<string,{__index:table|function,__newindex:function,__tostring:function,__add:funtion,__sub:function,__mul:function,__div:function,__mod:function,__eq:function,__lt:function,__le:function,__unm:function,__len:function}>"
         }
-      }
-    },
-    "Entity": {
-      method: {
-        "getPose": {
-          return: "EntityPose"
-        }
-      }
-    },
-    "ItemTask": {
-      method: {
-        "renderType": {
-          param: {
-            "renderType": {
-              type: "ItemRenderType"
-            }
-          }
-        }
-      }
-    },
-    "KeybindAPI": {
-      method: {
-        "create": {
-          param: {
-            "key": {
-              type: "KeybindID"
-            }
-          }
-        },
-        "getVanillaKey": {
-          param: {
-            "id": {
-              type: "KeyID"
-            }
-          },
-          return: "KeybindID"
-        }
-      }
-    },
-    "Keybind": {
-      method: {
-        "getKey": {
-          return: "KeybindID"
-        },
-        "setKey": {
-          param: {
-            "key": {
-              type: "KeybindID"
-            }
-          }
-        }
-      }
-    },
-    "LivingEntity": {
-      method: {
-        "getActiveHand": {
-          return: `"OFF_HAND"|"MAIN_HAND"`
-        },
-        "getPose": {
-          return: "EntityPose"
-        }
-      }
-    },
-    "ModelPart": {
-      field: {
-        fields: [
-          `---@field [string] ModelPart\n`
-        ]
       },
-      method: {
-        "getChildren": {
-          return: "ModelPart[]"
-        },
-        "getParentType": {
-          return: "ParentType"
-        },
-        "setParentType": {
-          param: {
-            "parentType": {
-              type: "ParentType"
-            }
-          }
-        },
-        "getPrimaryRenderType": {
-          return: "RenderType"
-        },
-        "setPrimaryRenderType": {
-          param: {
-            "renderType": {
-              type: "RenderType"
-            }
-          }
-        },
-        "getSecondaryRenderType": {
-          return: "RenderType"
-        },
-        "setSecondaryRenderType": {
-          param: {
-            "renderType": {
-              type: "RenderType"
-            }
-          }
-        },
-        "setPrimaryTexture": {
-          param: {
-            "textureType": {
-              type: "TextureType"
-            }
-          }
-        },
-        "setSecondaryTexture": {
-          param: {
-            "textureType": {
-              type: "TextureType"
-            }
-          }
-        },
-      }
-    },
-    "Player": {
-      method: {
-        "getActiveHand": {
-          return: `"OFF_HAND"|"MAIN_HAND"`
-        },
-        "getPose": {
-          return: "EntityPose"
+      _aMethod: [
+        {
+          name: "vec",
+          description: "An alias for \"vectors.vec\", since it's used so often.",
+          parameters: [
+            [
+              { name: 'x', type: 'Number' },
+              { name: 'y', type: 'Number' }
+            ],
+            [
+              { name: 'x', type: 'Number' },
+              { name: 'y', type: 'Number' },
+              { name: 'z', type: 'Number' }
+            ],
+            [
+              { name: 'x', type: 'Number' },
+              { name: 'y', type: 'Number' },
+              { name: 'z', type: 'Number' },
+              { name: 'w', type: 'Number' }
+            ],
+            [
+              { name: 'x', type: 'Number' },
+              { name: 'y', type: 'Number' },
+              { name: 'z', type: 'Number' },
+              { name: 'w', type: 'Number' },
+              { name: 't', type: 'Number' }
+            ],
+            [
+              { name: 'x', type: 'Number' },
+              { name: 'y', type: 'Number' },
+              { name: 'z', type: 'Number' },
+              { name: 'w', type: 'Number' },
+              { name: 't', type: 'Number' },
+              { name: 'h', type: 'Number' }
+            ]
+          ],
+          returns: [
+            'Vector2',
+            'Vector3',
+            'Vector4',
+            'Vector5',
+            'Vector6'
+          ],
+          static: true
         }
-      }
-    },
-    "RendererAPI": {
-      method: {
-        "setPostEffect": {
-          param: {
-            "effect": {
-              type: "PostEffect"
-            }
-          }
-        }
-      }
-    },
-    "EntityPoses": {
-      name: "EntityPose"
-    },
-    "Item RenderTypes": {
-      name: "ItemRenderType"
-    },
-    "KeyIDs": {
-      name: "KeyID"
-    },
-    "Keybinds": {
-      name: "KeybindID"
-    },
-    "LoopModes": {
-      name: "LoopMode"
-    },
-    "ParentTypes": {
-      name: "ParentType"
-    },
-    "PlayStates": {
-      name: "PlayState"
-    },
-    "PostEffects": {
-      name: "PostEffect"
-    },
-    "RenderTypes": {
-      name: "RenderType"
-    },
-    "TextureTypes": {
-      name: "TextureType"
-    },
-    "Matrix2": {
-      operator: {
-        operators: [
-          '---@operator mul(Matrix2|Matrix2):Matrix2\n',
-          '---@operator mul(Matrix2|Vector2):Vector2\n',
-        ]
-      }
-    },
-    "Matrix3": {
-      operator: {
-        operators: [
-          '---@operator mul(Matrix3|Matrix3):Matrix3\n',
-          '---@operator mul(Matrix3|Vector3):Vector3\n',
-        ]
-      }
-    },
-    "Matrix4": {
-      operator: {
-        operators: [
-          '---@operator mul(Matrix4|Matrix4):Matrix4\n',
-          '---@operator mul(Matrix4|Vector4):Vector4\n',
-        ]
-      }
-    },
-    "Vector2": {
-      operator: {
-        operators: [
-          '---@operator add(Vector2|Vector2):Vector2\n',
-          '---@operator sub(Vector2|Vector2):Vector2\n',
-          '---@operator mul(Vector2|Vector2):Vector2\n',
-          '---@operator mul(Vector2|number):Vector2\n',
-          '---@operator div(Vector2|Vector2):Vector2\n',
-          '---@operator div(Vector2|number):Vector2\n',
-          '---@operator mod(Vector2|Vector2):Vector2\n',
-          '---@operator mod(Vector2|number):Vector2\n',
-        ]
-      }
-    },
-    "Vector3": {
-      operator: {
-        operators: [
-          '---@operator add(Vector3|Vector3):Vector3\n',
-          '---@operator sub(Vector3|Vector3):Vector3\n',
-          '---@operator mul(Vector3|Vector3):Vector3\n',
-          '---@operator mul(Vector3|number):Vector3\n',
-          '---@operator div(Vector3|Vector3):Vector3\n',
-          '---@operator div(Vector3|number):Vector3\n',
-          '---@operator mod(Vector3|Vector3):Vector3\n',
-          '---@operator mod(Vector3|number):Vector3\n',
-        ]
-      }
-    },
-    "Vector4": {
-      operator: {
-        operators: [
-          '---@operator add(Vector4|Vector4):Vector4\n',
-          '---@operator sub(Vector4|Vector4):Vector4\n',
-          '---@operator mul(Vector4|Vector4):Vector4\n',
-          '---@operator mul(Vector4|number):Vector4\n',
-          '---@operator div(Vector4|Vector4):Vector4\n',
-          '---@operator div(Vector4|number):Vector4\n',
-          '---@operator mod(Vector4|Vector4):Vector4\n',
-          '---@operator mod(Vector4|number):Vector4\n',
-        ]
-      }
-    },
-    "Vector5": {
-      operator: {
-        operators: [
-          '---@operator add(Vector5|Vector5):Vector5\n',
-          '---@operator sub(Vector5|Vector5):Vector5\n',
-          '---@operator mul(Vector5|Vector5):Vector5\n',
-          '---@operator mul(Vector5|number):Vector5\n',
-          '---@operator div(Vector5|Vector5):Vector5\n',
-          '---@operator div(Vector5|number):Vector5\n',
-          '---@operator mod(Vector5|Vector5):Vector5\n',
-          '---@operator mod(Vector5|number):Vector5\n',
-        ]
-      }
-    },
-    "Vector6": {
-      operator: {
-        operators: [
-          '---@operator add(Vector6|Vector6):Vector6\n',
-          '---@operator sub(Vector6|Vector6):Vector6\n',
-          '---@operator mul(Vector6|Vector6):Vector6\n',
-          '---@operator mul(Vector6|number):Vector6\n',
-          '---@operator div(Vector6|Vector6):Vector6\n',
-          '---@operator div(Vector6|number):Vector6\n',
-          '---@operator mod(Vector6|Vector6):Vector6\n',
-          '---@operator mod(Vector6|number):Vector6\n',
-        ]
-      }
+      ],
+      _rMethod: {}
     }
-  }*/
+  }
   const typeOverrides = {
     "Boolean": "boolean",
     "Integer": "integer",
@@ -393,17 +142,25 @@
       "global.lua": doGlobals(json.globals),
       "math.lua": doClass(json.math, true)
     }
+    let classNameList = {
+      name: "Classes",
+      description: "List of valid Figura Class names. Used for `type` function and figuraMetatables.",
+      entries: []
+    }
     for (const global of json.globals.fields) {
       switch (global.type) {
         case "Function": continue
         default: break
       }
       if (global.name == "figuraMetatables") continue
-      for (const clazz of global.children)
+      for (const clazz of global.children) {
+        classNameList.entries.push(clazz.name)
         docs[`${clazz.name}.lua`] = `---@diagnostic disable: duplicate-set-field\n${doClass(clazz)}`
+      }
     }
     for (const list of json.lists)
       docs[`${list.name}.lua`] = doList(list)
+    docs[`${classNameList.name}.lua`] = doList(classNameList)
     return docs
   }
   function unpackDocs(docs) {
@@ -413,10 +170,11 @@
     }
     return r
   }
-  function downloadFile(content, name) {
-    console.log(null, name)
-    var a = document.createElement("a");
-    a.href = window.URL.createObjectURL(new Blob([content], { type: "text/plain" }));
+  async function downloadFiles(files, name) {
+    //https://github.com/Touffy/client-zip
+    let downloadZip = (() => { "stream" in Blob.prototype || Object.defineProperty(Blob.prototype, "stream", { value() { return new Response(this).body } }), "setBigUint64" in DataView.prototype || Object.defineProperty(DataView.prototype, "setBigUint64", { value(e, n, t) { const i = Number(0xffffffffn & n), o = Number(n >> 32n); this.setUint32(e + (t ? 0 : 4), i, t), this.setUint32(e + (t ? 4 : 0), o, t) } }); var f = e => new DataView(new ArrayBuffer(e)), r = e => new Uint8Array(e.buffer || e), a = e => (new TextEncoder).encode(String(e)), s = e => Math.min(4294967295, Number(e)), A = e => Math.min(65535, Number(e)); function u(e, n) { if (void 0 === n || n instanceof Date || (n = new Date(n)), e instanceof File) return { t: n || new Date(e.lastModified), i: e.stream() }; if (e instanceof Response) return { t: n || new Date(e.headers.get("Last-Modified") || Date.now()), i: e.body }; if (void 0 === n) n = new Date; else if (isNaN(n)) throw new Error("Invalid modification date."); if ("string" == typeof e) return { t: n, i: a(e) }; if (e instanceof Blob) return { t: n, i: e.stream() }; if (e instanceof Uint8Array || e instanceof ReadableStream) return { t: n, i: e }; if (e instanceof ArrayBuffer || ArrayBuffer.isView(e)) return { t: n, i: r(e) }; if (Symbol.asyncIterator in e) return { t: n, i: d(e) }; throw new TypeError("Unsupported input format.") } function d(e) { const n = "next" in e ? e : e[Symbol.asyncIterator](); return new ReadableStream({ async pull(e) { let t = 0; for (; e.desiredSize > t;) { const i = await n.next(); if (!i.value) { e.close(); break } { const n = l(i.value); e.enqueue(n), t += n.byteLength } } } }) } function l(e) { return "string" == typeof e ? a(e) : e instanceof Uint8Array ? e : r(e) } function y(e, n, t) { if (void 0 === n || n instanceof Uint8Array || (n = a(n)), e instanceof File) return { o: n || a(e.name), A: BigInt(e.size) }; if (e instanceof Response) { const i = e.headers.get("content-disposition"), o = i && i.match(/;\s*filename\*?=["']?(.*?)["']?$/i), f = o && o[1] || new URL(e.url).pathname.split("/").pop(), r = f && decodeURIComponent(f), s = t || +e.headers.get("content-length"); return { o: n || a(r), A: BigInt(s) } } if (!n || 0 === n.length) throw new Error("The file must have a name."); return "string" == typeof e ? { o: n, A: BigInt(a(e).length) } : e instanceof Blob ? { o: n, A: BigInt(e.size) } : e instanceof ArrayBuffer || ArrayBuffer.isView(e) ? { o: n, A: BigInt(e.byteLength) } : { o: n, A: t > -1 ? BigInt(t) : void 0 } } var w = new WebAssembly.Instance(new WebAssembly.Module(Uint8Array.from(atob("AGFzbQEAAAABCgJgAABgAn9/AXwDAwIAAQUDAQACBwkCAW0CAAFjAAEIAQAKlQECSQEDfwNAIAEhAEEAIQIDQCAAQQF2IABBAXFBoIbi7X5scyEAIAJBAWoiAkEIRw0ACyABQQJ0IAA2AgAgAUEBaiIBQYACRw0ACwtJAQF/IAFBf3MhAUGAgAQhAkGAgAQgAGohAANAIAFB/wFxIAItAABzQQJ0KAIAIAFBCHZzIQEgAkEBaiICIABJDQALIAFBf3O4Cw"), (e => e.charCodeAt(0))))), { c, m } = w.exports, B = 65536, b = r(m).subarray(B); function I(e, n = 0) { for (const t of function* (e) { for (; e.length > B;)yield e.subarray(0, B), e = e.subarray(B); e.length && (yield e) }(e)) b.set(t), n = c(t.length, n); return n } function g(e, n, t = 0) { const i = e.getSeconds() >> 1 | e.getMinutes() << 5 | e.getHours() << 11, o = e.getDate() | e.getMonth() + 1 << 5 | e.getFullYear() - 1980 << 9; n.setUint16(t, i, 1), n.setUint16(t + 2, o, 1) } function p(e) { const n = f(30); return n.setUint32(0, 1347093252), n.setUint32(4, 754976768), g(e.t, n, 10), n.setUint16(26, e.o.length, 1), r(n) } async function* D(e) { let { i: n } = e; if ("then" in n && (n = await n), n instanceof Uint8Array) yield n, e.u = I(n, 0), e.A = BigInt(n.length); else { e.A = 0n; const t = n.getReader(); for (; ;) { const { value: n, done: i } = await t.read(); if (i) break; e.u = I(n, e.u), e.A += BigInt(n.length), yield n } } } function h(e, n) { const t = f(16 + (n ? 8 : 0)); return t.setUint32(0, 1347094280), t.setUint32(4, e.u, 1), n ? (t.setBigUint64(8, e.A, 1), t.setBigUint64(16, e.A, 1)) : (t.setUint32(8, s(e.A), 1), t.setUint32(12, s(e.A), 1)), r(t) } function v(e, n, t = 0) { const i = f(46); return i.setUint32(0, 1347092738), i.setUint32(4, 755182848), i.setUint16(8, 2048), g(e.t, i, 12), i.setUint32(16, e.u, 1), i.setUint32(20, s(e.A), 1), i.setUint32(24, s(e.A), 1), i.setUint16(28, e.o.length, 1), i.setUint16(30, t, 1), i.setUint16(40, 33204, 1), i.setUint32(42, s(n), 1), r(i) } function Q(e, n, t) { const i = f(t); return i.setUint16(0, 1, 1), i.setUint16(2, t - 4, 1), 16 & t && (i.setBigUint64(4, e.A, 1), i.setBigUint64(12, e.A, 1)), i.setBigUint64(t - 8, n, 1), r(i) } function E(e) { return e instanceof File || e instanceof Response ? [[e], [e]] : [[e.input, e.name, e.size], [e.input, e.lastModified]] } var C = e => function (e) { let n = BigInt(22), t = 0n, i = 0; for (const o of e) { if (!o.o) throw new Error("Every file must have a non-empty name."); if (void 0 === o.A) throw new Error(`Missing size for file "${(new TextDecoder).decode(o.o)}".`); const e = o.A >= 0xffffffffn, f = t >= 0xffffffffn; t += BigInt(46 + o.o.length + (e && 8)) + o.A, n += BigInt(o.o.length + 46 + (12 * f | 28 * e)), i || (i = e) } return (i || t >= 0xffffffffn) && (n += BigInt(76)), n + t }(function* (e) { for (const n of e) yield y(...E(n)[0]) }(e)); return function (e, n = {}) { const t = { "Content-Type": "application/zip", "Content-Disposition": "attachment" }; return ("bigint" == typeof n.length || Number.isInteger(n.length)) && n.length > 0 && (t["Content-Length"] = String(n.length)), n.metadata && (t["Content-Length"] = String(C(n.metadata))), new Response(d(async function* (e) { const n = []; let t = 0n, i = 0n, o = 0; for await (const f of e) { yield p(f), yield f.o, yield* D(f); const e = f.A >= 0xffffffffn, r = 12 * (t >= 0xffffffffn) | 28 * e; yield h(f, e), n.push(v(f, t, r)), n.push(f.o), r && n.push(Q(f, t, r)), e && (t += 8n), i++, t += BigInt(46 + f.o.length) + f.A, o || (o = e) } let a = 0n; for (const e of n) yield e, a += BigInt(e.length); if (o || t >= 0xffffffffn) { const e = f(76); e.setUint32(0, 1347094022), e.setBigUint64(4, BigInt(44), 1), e.setUint32(12, 755182848), e.setBigUint64(24, i, 1), e.setBigUint64(32, i, 1), e.setBigUint64(40, a, 1), e.setBigUint64(48, t, 1), e.setUint32(56, 1347094023), e.setBigUint64(64, t + a, 1), e.setUint32(72, 1, 1), yield r(e) } const u = f(22); u.setUint32(0, 1347093766), u.setUint16(8, A(i), 1), u.setUint16(10, A(i), 1), u.setUint32(12, s(a), 1), u.setUint32(16, s(t), 1), yield r(u) }(async function* (e) { for await (const n of e) { const [e, t] = E(n); yield Object.assign(u(...t), y(...e)) } }(e))), { headers: t }) } })();
+    let a = document.createElement("a");
+    a.href = window.URL.createObjectURL(await downloadZip(files).blob());//new Blob([content], { type: "text/plain" })
     a.download = name;
     a.click();
     a.remove();
@@ -438,11 +196,14 @@
       a = json
       let docs = createDocs(json)
       if (isDownload.checked) {
-        let i = 0
+        let files=[]
         for (const [fileName, fileContents] of Object.entries(docs)) {
-          setTimeout(downloadFile, i * 200, fileContents, fileName)
-          i++
+          files.push({
+            name:fileName,
+            input:fileContents
+          })
         }
+        downloadFiles(files,"docs.zip")
       }
       textbox.value = unpackDocs(docs)
       textbox.style.height = 'auto';
