@@ -461,370 +461,400 @@
           }
         }
       },
-      "Vector2":{
-        addOperator:[
+      "Vector2": {
+        addOperator: [
           {
-            name:"add",
-            parameter:"Vector2",
-            returns:"Vector2"
+            name: "add",
+            parameter: "Vector2",
+            returns: "Vector2"
           },
           {
-            name:"add",
-            parameter:"number",
-            returns:"Vector2"
+            name: "add",
+            parameter: "number",
+            returns: "Vector2"
           },
           {
-            name:"sub",
-            parameter:"Vector2",
-            returns:"Vector2"
+            name: "sub",
+            parameter: "Vector2",
+            returns: "Vector2"
           },
           {
-            name:"sub",
-            parameter:"number",
-            returns:"Vector2"
+            name: "sub",
+            parameter: "number",
+            returns: "Vector2"
           },
           {
-            name:"mul",
-            parameter:"Vector2",
-            returns:"Vector2"
+            name: "mul",
+            parameter: "Vector2",
+            returns: "Vector2"
           },
           {
-            name:"mul",
-            parameter:"number",
-            returns:"Vector2"
+            name: "mul",
+            parameter: "number",
+            returns: "Vector2"
           },
           {
-            name:"div",
-            parameter:"Vector2",
-            returns:"Vector2"
+            name: "div",
+            parameter: "Vector2",
+            returns: "Vector2"
           },
           {
-            name:"div",
-            parameter:"number",
-            returns:"Vector2"
+            name: "div",
+            parameter: "number",
+            returns: "Vector2"
           },
           {
-            name:"mod",
-            parameter:"Vector2",
-            returns:"Vector2"
+            name: "mod",
+            parameter: "Vector2",
+            returns: "Vector2"
           },
           {
-            name:"mod",
-            parameter:"number",
-            returns:"Vector2"
+            name: "mod",
+            parameter: "number",
+            returns: "Vector2"
           },
           {
-            name:"unm",
-            returns:"Vector2"
+            name: "unm",
+            returns: "Vector2"
           }
         ]
       },
-      "Vector3":{
-        addOperator:[
+      "Vector3": {
+        addOperator: [
           {
-            name:"add",
-            parameter:"Vector3",
-            returns:"Vector3"
+            name: "add",
+            parameter: "Vector3",
+            returns: "Vector3"
           },
           {
-            name:"add",
-            parameter:"number",
-            returns:"Vector3"
+            name: "add",
+            parameter: "number",
+            returns: "Vector3"
           },
           {
-            name:"sub",
-            parameter:"Vector3",
-            returns:"Vector3"
+            name: "sub",
+            parameter: "Vector3",
+            returns: "Vector3"
           },
           {
-            name:"sub",
-            parameter:"number",
-            returns:"Vector3"
+            name: "sub",
+            parameter: "number",
+            returns: "Vector3"
           },
           {
-            name:"mul",
-            parameter:"Vector3",
-            returns:"Vector3"
+            name: "mul",
+            parameter: "Vector3",
+            returns: "Vector3"
           },
           {
-            name:"mul",
-            parameter:"number",
-            returns:"Vector3"
+            name: "mul",
+            parameter: "number",
+            returns: "Vector3"
           },
           {
-            name:"div",
-            parameter:"Vector3",
-            returns:"Vector3"
+            name: "div",
+            parameter: "Vector3",
+            returns: "Vector3"
           },
           {
-            name:"div",
-            parameter:"number",
-            returns:"Vector3"
+            name: "div",
+            parameter: "number",
+            returns: "Vector3"
           },
           {
-            name:"mod",
-            parameter:"Vector3",
-            returns:"Vector3"
+            name: "mod",
+            parameter: "Vector3",
+            returns: "Vector3"
           },
           {
-            name:"mod",
-            parameter:"number",
-            returns:"Vector3"
+            name: "mod",
+            parameter: "number",
+            returns: "Vector3"
           },
           {
-            name:"unm",
-            returns:"Vector3"
+            name: "unm",
+            returns: "Vector3"
           }
         ]
       },
-      "Vector4":{
-        addOperator:[
+      "Vector4": {
+        addOperator: [
           {
-            name:"add",
-            parameter:"Vector4",
-            returns:"Vector4"
+            name: "add",
+            parameter: "Vector4",
+            returns: "Vector4"
           },
           {
-            name:"add",
-            parameter:"number",
-            returns:"Vector4"
+            name: "add",
+            parameter: "number",
+            returns: "Vector4"
           },
           {
-            name:"sub",
-            parameter:"Vector4",
-            returns:"Vector4"
+            name: "sub",
+            parameter: "Vector4",
+            returns: "Vector4"
           },
           {
-            name:"sub",
-            parameter:"number",
-            returns:"Vector4"
+            name: "sub",
+            parameter: "number",
+            returns: "Vector4"
           },
           {
-            name:"mul",
-            parameter:"Vector4",
-            returns:"Vector4"
+            name: "mul",
+            parameter: "Vector4",
+            returns: "Vector4"
           },
           {
-            name:"mul",
-            parameter:"number",
-            returns:"Vector4"
+            name: "mul",
+            parameter: "number",
+            returns: "Vector4"
           },
           {
-            name:"div",
-            parameter:"Vector4",
-            returns:"Vector4"
+            name: "div",
+            parameter: "Vector4",
+            returns: "Vector4"
           },
           {
-            name:"div",
-            parameter:"number",
-            returns:"Vector4"
+            name: "div",
+            parameter: "number",
+            returns: "Vector4"
           },
           {
-            name:"mod",
-            parameter:"Vector4",
-            returns:"Vector4"
+            name: "mod",
+            parameter: "Vector4",
+            returns: "Vector4"
           },
           {
-            name:"mod",
-            parameter:"number",
-            returns:"Vector4"
+            name: "mod",
+            parameter: "number",
+            returns: "Vector4"
           },
           {
-            name:"unm",
-            returns:"Vector4"
+            name: "unm",
+            returns: "Vector4"
           }
         ]
       },
-      "Vector5":{
-        addOperator:[
+      "Vector5": {
+        addOperator: [
           {
-            name:"add",
-            parameter:"Vector5",
-            returns:"Vector5"
+            name: "add",
+            parameter: "Vector5",
+            returns: "Vector5"
           },
           {
-            name:"add",
-            parameter:"number",
-            returns:"Vector5"
+            name: "add",
+            parameter: "number",
+            returns: "Vector5"
           },
           {
-            name:"sub",
-            parameter:"Vector5",
-            returns:"Vector5"
+            name: "sub",
+            parameter: "Vector5",
+            returns: "Vector5"
           },
           {
-            name:"sub",
-            parameter:"number",
-            returns:"Vector5"
+            name: "sub",
+            parameter: "number",
+            returns: "Vector5"
           },
           {
-            name:"mul",
-            parameter:"Vector5",
-            returns:"Vector5"
+            name: "mul",
+            parameter: "Vector5",
+            returns: "Vector5"
           },
           {
-            name:"mul",
-            parameter:"number",
-            returns:"Vector5"
+            name: "mul",
+            parameter: "number",
+            returns: "Vector5"
           },
           {
-            name:"div",
-            parameter:"Vector5",
-            returns:"Vector5"
+            name: "div",
+            parameter: "Vector5",
+            returns: "Vector5"
           },
           {
-            name:"div",
-            parameter:"number",
-            returns:"Vector5"
+            name: "div",
+            parameter: "number",
+            returns: "Vector5"
           },
           {
-            name:"mod",
-            parameter:"Vector5",
-            returns:"Vector5"
+            name: "mod",
+            parameter: "Vector5",
+            returns: "Vector5"
           },
           {
-            name:"mod",
-            parameter:"number",
-            returns:"Vector5"
+            name: "mod",
+            parameter: "number",
+            returns: "Vector5"
           },
           {
-            name:"unm",
-            returns:"Vector5"
+            name: "unm",
+            returns: "Vector5"
           }
         ]
       },
-      "Vector6":{
-        addOperator:[
+      "Vector6": {
+        addOperator: [
           {
-            name:"add",
-            parameter:"Vector6",
-            returns:"Vector6"
+            name: "add",
+            parameter: "Vector6",
+            returns: "Vector6"
           },
           {
-            name:"add",
-            parameter:"number",
-            returns:"Vector6"
+            name: "add",
+            parameter: "number",
+            returns: "Vector6"
           },
           {
-            name:"sub",
-            parameter:"Vector6",
-            returns:"Vector6"
+            name: "sub",
+            parameter: "Vector6",
+            returns: "Vector6"
           },
           {
-            name:"sub",
-            parameter:"number",
-            returns:"Vector6"
+            name: "sub",
+            parameter: "number",
+            returns: "Vector6"
           },
           {
-            name:"mul",
-            parameter:"Vector6",
-            returns:"Vector6"
+            name: "mul",
+            parameter: "Vector6",
+            returns: "Vector6"
           },
           {
-            name:"mul",
-            parameter:"number",
-            returns:"Vector6"
+            name: "mul",
+            parameter: "number",
+            returns: "Vector6"
           },
           {
-            name:"div",
-            parameter:"Vector6",
-            returns:"Vector6"
+            name: "div",
+            parameter: "Vector6",
+            returns: "Vector6"
           },
           {
-            name:"div",
-            parameter:"number",
-            returns:"Vector6"
+            name: "div",
+            parameter: "number",
+            returns: "Vector6"
           },
           {
-            name:"mod",
-            parameter:"Vector6",
-            returns:"Vector6"
+            name: "mod",
+            parameter: "Vector6",
+            returns: "Vector6"
           },
           {
-            name:"mod",
-            parameter:"number",
-            returns:"Vector6"
+            name: "mod",
+            parameter: "number",
+            returns: "Vector6"
           },
           {
-            name:"unm",
-            returns:"Vector6"
+            name: "unm",
+            returns: "Vector6"
           }
         ]
       },
-      "Matrix2":{
-        addOperator:[
+      "Matrix2": {
+        addOperator: [
           {
-            name:"add",
-            parameter:"Matrix2",
-            returns:"Matrix2"
+            name: "add",
+            parameter: "Matrix2",
+            returns: "Matrix2"
           },
           {
-            name:"sub",
-            parameter:"Matrix2",
-            returns:"Matrix2"
+            name: "sub",
+            parameter: "Matrix2",
+            returns: "Matrix2"
           },
           {
-            name:"mul",
-            parameter:"Matrix2",
-            returns:"Matrix2"
+            name: "mul",
+            parameter: "Matrix2",
+            returns: "Matrix2"
           },
           {
-            name:"mul",
-            parameter:"Vector2",
-            returns:"Vector2"
-          },
-        ]
-      },
-      "Matrix3":{
-        addOperator:[
-          {
-            name:"add",
-            parameter:"Matrix3",
-            returns:"Matrix3"
-          },
-          {
-            name:"sub",
-            parameter:"Matrix3",
-            returns:"Matrix3"
-          },
-          {
-            name:"mul",
-            parameter:"Matrix3",
-            returns:"Matrix3"
-          },
-          {
-            name:"mul",
-            parameter:"Vector3",
-            returns:"Vector3"
+            name: "mul",
+            parameter: "Vector2",
+            returns: "Vector2"
           },
         ]
       },
-      "Matrix4":{
-        addOperator:[
+      "Matrix3": {
+        addOperator: [
           {
-            name:"add",
-            parameter:"Matrix4",
-            returns:"Matrix4"
+            name: "add",
+            parameter: "Matrix3",
+            returns: "Matrix3"
           },
           {
-            name:"sub",
-            parameter:"Matrix4",
-            returns:"Matrix4"
+            name: "sub",
+            parameter: "Matrix3",
+            returns: "Matrix3"
           },
           {
-            name:"mul",
-            parameter:"Matrix4",
-            returns:"Matrix4"
+            name: "mul",
+            parameter: "Matrix3",
+            returns: "Matrix3"
           },
           {
-            name:"mul",
-            parameter:"Vector4",
-            returns:"Vector4"
+            name: "mul",
+            parameter: "Vector3",
+            returns: "Vector3"
+          },
+        ]
+      },
+      "Matrix4": {
+        addOperator: [
+          {
+            name: "add",
+            parameter: "Matrix4",
+            returns: "Matrix4"
+          },
+          {
+            name: "sub",
+            parameter: "Matrix4",
+            returns: "Matrix4"
+          },
+          {
+            name: "mul",
+            parameter: "Matrix4",
+            returns: "Matrix4"
+          },
+          {
+            name: "mul",
+            parameter: "Vector4",
+            returns: "Vector4"
           },
         ]
       },
     },
   }
+  permutationsCache={}
+  function getAllPermutations(chars, length) {
+    const r = []
+    if(permutationsCache[chars]?.[length])
+      return permutationsCache[chars]?.[length]
+    if (length <= 1)
+      for (let i = 0; i < chars.length; i++)
+        r.push(chars[i])
+    else
+      for (let i = 0, prev = getAllPermutations(chars, length - 1); i < prev.length; i++)
+        for (let o = 0; o < chars.length; o++)
+          r.push(prev[i] + chars[o])
+    if(!permutationsCache[chars])permutationsCache[chars]={}
+    permutationsCache[chars][length]=r
+    return r
+  }
+  function doSwizzling(baseClass,chars,classes){
+    let swizzles=[]
+    console.log(classes.length)
+    for(let i=0;i<classes.length;i++)
+      swizzles=swizzles.concat(getAllPermutations(chars,i+2))
+    if(!baseClass.addField)baseClass.addField=[]
+    for(const swizzle of swizzles)
+      baseClass.addField.push({name:swizzle,type:classes[swizzle.length-2]})
+  }
+  doSwizzling(overrides.modifyClass.Vector2,"xy_",["Vector2","Vector3","Vector4","Vector5","Vector6"])
+  doSwizzling(overrides.modifyClass.Vector3,"xyz_",["Vector2","Vector3","Vector4","Vector5","Vector6"])
+  doSwizzling(overrides.modifyClass.Vector4,"xyzw_",["Vector2","Vector3","Vector4","Vector5","Vector6"])
+  doSwizzling(overrides.modifyClass.Vector5,"xyzwt_",["Vector2","Vector3","Vector4","Vector5","Vector6"])
+  doSwizzling(overrides.modifyClass.Vector6,"xyzwth_",["Vector2","Vector3","Vector4","Vector5","Vector6"])
   const typeOverrides = {
     "Boolean": "boolean",
     "Integer": "integer",
@@ -868,7 +898,7 @@
     return r
   }
   function doField(field) {
-    return `---@field ${field.name} ${doType(field.type)} ${field.description}\n`
+    return `---@field ${field.name} ${doType(field.type)} ${field.description?field.description:''}\n`
   }
   function doClass(clazz, global) {
     global ??= false
@@ -885,9 +915,9 @@
     if (classOverride?.addField)
       for (const field of classOverride?.addField)
         r += doField(field)
-    if(classOverride?.addOperator)
-      for(const operator of classOverride?.addOperator)
-        r+=`---@operator ${operator.name}${operator.parameter?`(${operator.parameter})`:""}:${operator.returns}\n`
+    if (classOverride?.addOperator)
+      for (const operator of classOverride?.addOperator)
+        r += `---@operator ${operator.name}${operator.parameter ? `(${operator.parameter})` : ""}:${operator.returns}\n`
     if (!global)
       r += `local `
     r += `${clazz.name}={}\n`
@@ -928,7 +958,7 @@
   function doList(list) {
     let r = `---${list.description}\n---@alias ${list.name}\n`
     for (const entry of list.entries)
-      r += `---| '${entry}'\n`
+      r += `---| "${entry}"\n`
     return r
   }
   function doGlobals(global) {
