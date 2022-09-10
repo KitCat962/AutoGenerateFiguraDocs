@@ -77,6 +77,103 @@
         ],
         modifyMethod: {}
       },
+      "Page": {
+        modifyMethod: {
+          "newAction": {
+            returns: ["ClickAction", "ClickAction"]
+          },
+          "newToggle": {
+            returns: ["ToggleAction", "ToggleAction"]
+          },
+          "newScroll": {
+            returns: ["ScrollAction", "ScrollAction"]
+          },
+        }
+      },
+      "ClickAction": {
+        modifyMethod: {
+          "color": {
+            returns: ["ClickAction", "ClickAction"]
+          },
+          "item": {
+            returns: ["ClickAction", "ClickAction"]
+          },
+          "title": {
+            returns: ["ClickAction", "ClickAction"]
+          },
+          "hoverItem": {
+            returns: ["ClickAction", "ClickAction"]
+          },
+          "hoverColor": {
+            returns: ["ClickAction", "ClickAction"]
+          },
+          "onLeftClick": {
+            returns: ["ClickAction"]
+          },
+          "onRightClick": {
+            returns: ["ClickAction"]
+          },
+        }
+      },
+      "ToggleAction": {
+        modifyMethod: {
+          "color": {
+            returns: ["ToggleAction", "ToggleAction"]
+          },
+          "item": {
+            returns: ["ToggleAction", "ToggleAction"]
+          },
+          "title": {
+            returns: ["ToggleAction", "ToggleAction"]
+          },
+          "hoverItem": {
+            returns: ["ToggleAction", "ToggleAction"]
+          },
+          "hoverColor": {
+            returns: ["ToggleAction", "ToggleAction"]
+          },
+          "toggleTitle": {
+            returns: ["ToggleAction"]
+          },
+          "toggleItem": {
+            returns: ["ToggleAction", "ToggleAction"]
+          },
+          "toggleColor": {
+            returns: ["ToggleAction", "ToggleAction"]
+          },
+          "toggled": {
+            returns: ["ToggleAction"]
+          },
+          "onToggle": {
+            returns: ["ToggleAction"]
+          },
+          "onUntoggle": {
+            returns: ["ToggleAction"]
+          },
+        }
+      },
+      "ScrollAction": {
+        modifyMethod: {
+          "color": {
+            returns: ["ScrollAction", "ScrollAction"]
+          },
+          "item": {
+            returns: ["ScrollAction", "ScrollAction"]
+          },
+          "title": {
+            returns: ["ScrollAction", "ScrollAction"]
+          },
+          "hoverItem": {
+            returns: ["ScrollAction", "ScrollAction"]
+          },
+          "hoverColor": {
+            returns: ["ScrollAction", "ScrollAction"]
+          },
+          "onScroll": {
+            returns: ["ScrollAction"]
+          },
+        }
+      },
       "Animation": {
         modifyMethod: {
           "loop": {
@@ -88,11 +185,11 @@
               }
             }
           },
-          "getPlayState":{
-            returns:["PlayStates"]
+          "getPlayState": {
+            returns: ["PlayStates"]
           },
-          "getLoop":{
-            returns:["LoopModes"]
+          "getLoop": {
+            returns: ["LoopModes"]
           }
         }
       },
@@ -106,10 +203,10 @@
           }
         }
       },
-      "Biome":{
-        modifyMethod:{
-          "getPrecipitation":{
-            returns:['"NONE" | "RAIN" | "SNOW"']
+      "Biome": {
+        modifyMethod: {
+          "getPrecipitation": {
+            returns: ['"NONE" | "RAIN" | "SNOW"']
           }
         }
       },
@@ -140,8 +237,8 @@
           "getTags": {
             returns: ["string[]"]
           },
-          "getUseAction":{
-            returns:['"NONE" | "EAT" | "DRINK" | "BOW" | "CROSSBOW" | "BLOCK" | "SPEAR" | "SPYGLASS"']
+          "getUseAction": {
+            returns: ['"NONE" | "EAT" | "DRINK" | "BOW" | "CROSSBOW" | "BLOCK" | "SPEAR" | "SPYGLASS"']
           },
           "getRarity": {
             returns: ['string|"COMMON"|"UNCOMMON"|"RARE"|"EPIC"']
@@ -157,146 +254,146 @@
           }
         ],
         modifyMethod: {
-          "getType":{
-            returns:['"GROUP" | "CUBE" | "MESH"']
+          "getType": {
+            returns: ['"GROUP" | "CUBE" | "MESH"']
           },
           "getChildren": {
             returns: ["ModelPart[]"]
           },
-          "addItem":{
-            returns:["ItemTask"]
+          "addItem": {
+            returns: ["ItemTask"]
           },
-          "addBlock":{
-            returns:["BlockTask"]
+          "addBlock": {
+            returns: ["BlockTask"]
           },
-          "addText":{
-            returns:["TextTask"]
+          "addText": {
+            returns: ["TextTask"]
           },
           "getTask": {
             returns: { 0: "RenderTask[]" }
           },
-          "setPrimaryTexture":{
-            parameters:{
-              0:{0:{type:"TextureTypes"}},
-              1:{0:{type:"TextureTypes"}}
+          "setPrimaryTexture": {
+            parameters: {
+              0: { 0: { type: "TextureTypes" } },
+              1: { 0: { type: "TextureTypes" } }
             }
           },
-          "setSecondaryTexture":{
-            parameters:{
-              0:{0:{type:"TextureTypes"}},
-              1:{0:{type:"TextureTypes"}}
+          "setSecondaryTexture": {
+            parameters: {
+              0: { 0: { type: "TextureTypes" } },
+              1: { 0: { type: "TextureTypes" } }
             }
           },
-          "setPrimaryRenderType":{
-            parameters:{
-              0:{0:{type:"RenderTypes"}}
+          "setPrimaryRenderType": {
+            parameters: {
+              0: { 0: { type: "RenderTypes" } }
             }
           },
-          "setSecondaryRenderType":{
-            parameters:{
-              0:{0:{type:"RenderTypes"}}
+          "setSecondaryRenderType": {
+            parameters: {
+              0: { 0: { type: "RenderTypes" } }
             }
           },
-          "getPrimaryRenderType":{
-            returns:["RenderTypes"]
+          "getPrimaryRenderType": {
+            returns: ["RenderTypes"]
           },
-          "getSecondaryRenderType":{
-            returns:["RenderTypes"]
+          "getSecondaryRenderType": {
+            returns: ["RenderTypes"]
           },
-          "getParentType":{
-            returns:["ParentTypes"]
+          "getParentType": {
+            returns: ["ParentTypes"]
           },
-          "setParentType":{
-            parameters:{0:{0:{type:"ParentTypes"}}}
+          "setParentType": {
+            parameters: { 0: { 0: { type: "ParentTypes" } } }
           }
         }
       },
-      "BlockTask":{
-        modifyMethod:{
-          "block":{
-            returns:["BlockTask","BlockTask"]
+      "BlockTask": {
+        modifyMethod: {
+          "block": {
+            returns: ["BlockTask", "BlockTask"]
           },
-          "scale":{
-            returns:["BlockTask","BlockTask"]
+          "scale": {
+            returns: ["BlockTask", "BlockTask"]
           },
-          "enabled":{
-            returns:["BlockTask"]
+          "enabled": {
+            returns: ["BlockTask"]
           },
-          "pos":{
-            returns:["BlockTask","BlockTask"]
+          "pos": {
+            returns: ["BlockTask", "BlockTask"]
           },
-          "rot":{
-            returns:["BlockTask","BlockTask"]
+          "rot": {
+            returns: ["BlockTask", "BlockTask"]
           },
-          "emissive":{
-            returns:["BlockTask","BlockTask"]
+          "emissive": {
+            returns: ["BlockTask", "BlockTask"]
           },
         }
       },
-      "ItemTask":{
-        modifyMethod:{
-          "item":{
-            returns:["ItemTask","ItemTask"]
+      "ItemTask": {
+        modifyMethod: {
+          "item": {
+            returns: ["ItemTask", "ItemTask"]
           },
-          "scale":{
-            returns:["ItemTask","ItemTask"]
+          "scale": {
+            returns: ["ItemTask", "ItemTask"]
           },
-          "enabled":{
-            returns:["ItemTask"]
+          "enabled": {
+            returns: ["ItemTask"]
           },
-          "pos":{
-            returns:["ItemTask","ItemTask"]
+          "pos": {
+            returns: ["ItemTask", "ItemTask"]
           },
-          "rot":{
-            returns:["ItemTask","ItemTask"]
+          "rot": {
+            returns: ["ItemTask", "ItemTask"]
           },
-          "emissive":{
-            returns:["ItemTask","ItemTask"]
+          "emissive": {
+            returns: ["ItemTask", "ItemTask"]
           },
-          "renderType":{
-            parameters:{0:{0:{type:"ItemRenderTypes"}}},
-            returns:["ItemTask"]
+          "renderType": {
+            parameters: { 0: { 0: { type: "ItemRenderTypes" } } },
+            returns: ["ItemTask"]
           },
-          "getRenderType":{
-            returns:["ItemRenderTypes"]
+          "getRenderType": {
+            returns: ["ItemRenderTypes"]
           }
         }
       },
-      "TextTask":{
-        modifyMethod:{
-          "text":{
-            returns:["TextTask"]
+      "TextTask": {
+        modifyMethod: {
+          "text": {
+            returns: ["TextTask"]
           },
-          "shadow":{
-            returns:["TextTask"]
+          "shadow": {
+            returns: ["TextTask"]
           },
-          "outline":{
-            returns:["TextTask"]
+          "outline": {
+            returns: ["TextTask"]
           },
-          "centered":{
-            returns:["TextTask"]
+          "centered": {
+            returns: ["TextTask"]
           },
-          "scale":{
-            returns:["TextTask","TextTask"]
+          "scale": {
+            returns: ["TextTask", "TextTask"]
           },
-          "enabled":{
-            returns:["TextTask"]
+          "enabled": {
+            returns: ["TextTask"]
           },
-          "pos":{
-            returns:["TextTask","TextTask"]
+          "pos": {
+            returns: ["TextTask", "TextTask"]
           },
-          "rot":{
-            returns:["TextTask","TextTask"]
+          "rot": {
+            returns: ["TextTask", "TextTask"]
           },
-          "emissive":{
-            returns:["TextTask","TextTask"]
+          "emissive": {
+            returns: ["TextTask", "TextTask"]
           },
         }
       },
-      "EntityAPI":{
-        modifyMethod:{
-          "getPose":{
-            returns:["EntityPoses"]
+      "EntityAPI": {
+        modifyMethod: {
+          "getPose": {
+            returns: ["EntityPoses"]
           }
         }
       },
@@ -305,61 +402,61 @@
           "getStatusEffects": {
             returns: ["{visible:boolean,duration:number,amplifier:number,name:string}[]"]
           },
-          "getActiveHand":{
-            returns:['"MAIN_HAND" | "OFF_HAND"']
+          "getActiveHand": {
+            returns: ['"MAIN_HAND" | "OFF_HAND"']
           },
-          "getPose":{
-            returns:["EntityPoses"]
+          "getPose": {
+            returns: ["EntityPoses"]
           }
         }
       },
       "PlayerAPI": {
         modifyMethod: {
-          "isSkinLayerVisible":{
-            parameters:{0:{0:{type:"PlayerModelParts"}}}
+          "isSkinLayerVisible": {
+            parameters: { 0: { 0: { type: "PlayerModelParts" } } }
           },
-          "getModelType":{
-            returns:['"DEFAULT" | "SLIM"']
+          "getModelType": {
+            returns: ['"DEFAULT" | "SLIM"']
           },
-          "getGamemode":{
-            returns:['"SURVIVAL" | "CREATIVE" | "ADVENTURE" | "SPECTATOR"']
+          "getGamemode": {
+            returns: ['"SURVIVAL" | "CREATIVE" | "ADVENTURE" | "SPECTATOR"']
           },
           "getStatusEffects": {
             returns: ["{visible:boolean,duration:number,amplifier:number,name:string}[]"]
           },
-          "getActiveHand":{
-            returns:['"MAIN_HAND" | "OFF_HAND"']
+          "getActiveHand": {
+            returns: ['"MAIN_HAND" | "OFF_HAND"']
           },
-          "getPose":{
-            returns:["EntityPoses"]
+          "getPose": {
+            returns: ["EntityPoses"]
           }
         }
       },
-      "KeybindAPI":{
-        modifyMethod:{
-          "create":{
-            parameters:{
-              0:{1:{type:"Keybinds"}},
-              1:{1:{type:"Keybinds"}},
-              2:{1:{type:"Keybinds"}},
+      "KeybindAPI": {
+        modifyMethod: {
+          "create": {
+            parameters: {
+              0: { 1: { type: "Keybinds" } },
+              1: { 1: { type: "Keybinds" } },
+              2: { 1: { type: "Keybinds" } },
             }
           },
-          "getVanillaKey":{
-            parameters:{
-              0:{0:{type:"KeyIDs"}}
+          "getVanillaKey": {
+            parameters: {
+              0: { 0: { type: "KeyIDs" } }
             },
-            returns:["Keybinds"]
+            returns: ["Keybinds"]
           }
         }
       },
-      "Keybind":{
-        modifyMethod:{
-          "getKey":{
-            returns:["Keybinds"]
+      "Keybind": {
+        modifyMethod: {
+          "getKey": {
+            returns: ["Keybinds"]
           },
-          "setKey":{
-            parameters:{
-              0:{0:{type:"Keybinds"}}
+          "setKey": {
+            parameters: {
+              0: { 0: { type: "Keybinds" } }
             }
           }
         }
@@ -592,8 +689,8 @@
   document.body.appendChild(input)
   document.body.appendChild(document.createElement("p"))
   document.body.appendChild(isDownload)
-  let tmpP=document.createElement("a")
-  tmpP.textContent="Download?"
+  let tmpP = document.createElement("a")
+  tmpP.textContent = "Download?"
   document.body.appendChild(tmpP)
   document.body.appendChild(document.createElement("P"))
   document.body.appendChild(textbox)
