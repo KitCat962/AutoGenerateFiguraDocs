@@ -589,8 +589,12 @@
     }
     fr.readAsText(input.files[0])
   }
-  document.body.appendChild(isDownload)
   document.body.appendChild(input)
+  document.body.appendChild(document.createElement("p"))
+  document.body.appendChild(isDownload)
+  let tmpP=document.createElement("a")
+  tmpP.textContent="Download?"
+  document.body.appendChild(tmpP)
   document.body.appendChild(document.createElement("P"))
   document.body.appendChild(textbox)
 }
