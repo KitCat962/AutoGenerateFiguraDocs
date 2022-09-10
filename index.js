@@ -462,6 +462,12 @@
         }
       },
       "Vector2": {
+        addField: [
+          {
+            name: "[string]",
+            type: "Vector2|Vector3|Vector4|Vector5|Vector6"
+          }
+        ],
         addOperator: [
           {
             name: "add",
@@ -520,6 +526,12 @@
         ]
       },
       "Vector3": {
+        addField: [
+          {
+            name: "[string]",
+            type: "Vector2|Vector3|Vector4|Vector5|Vector6"
+          }
+        ],
         addOperator: [
           {
             name: "add",
@@ -578,6 +590,12 @@
         ]
       },
       "Vector4": {
+        addField: [
+          {
+            name: "[string]",
+            type: "Vector2|Vector3|Vector4|Vector5|Vector6"
+          }
+        ],
         addOperator: [
           {
             name: "add",
@@ -636,6 +654,12 @@
         ]
       },
       "Vector5": {
+        addField: [
+          {
+            name: "[string]",
+            type: "Vector2|Vector3|Vector4|Vector5|Vector6"
+          }
+        ],
         addOperator: [
           {
             name: "add",
@@ -694,6 +718,12 @@
         ]
       },
       "Vector6": {
+        addField: [
+          {
+            name: "[string]",
+            type: "Vector2|Vector3|Vector4|Vector5|Vector6"
+          }
+        ],
         addOperator: [
           {
             name: "add",
@@ -825,7 +855,7 @@
       },
     },
   }
-  permutationsCache={}
+  /*permutationsCache={}
   function getAllPermutations(chars, length) {
     const r = []
     if(permutationsCache[chars]?.[length])
@@ -854,7 +884,7 @@
   doSwizzling(overrides.modifyClass.Vector3,"xyz_",["Vector2","Vector3","Vector4","Vector5","Vector6"])
   doSwizzling(overrides.modifyClass.Vector4,"xyzw_",["Vector2","Vector3","Vector4","Vector5","Vector6"])
   doSwizzling(overrides.modifyClass.Vector5,"xyzwt_",["Vector2","Vector3","Vector4","Vector5","Vector6"])
-  doSwizzling(overrides.modifyClass.Vector6,"xyzwth_",["Vector2","Vector3","Vector4","Vector5","Vector6"])
+  doSwizzling(overrides.modifyClass.Vector6,"xyzwth_",["Vector2","Vector3","Vector4","Vector5","Vector6"])*/
   const typeOverrides = {
     "Boolean": "boolean",
     "Integer": "integer",
@@ -898,7 +928,7 @@
     return r
   }
   function doField(field) {
-    return `---@field ${field.name} ${doType(field.type)} ${field.description?field.description:''}\n`
+    return `---@field ${field.name} ${doType(field.type)} ${field.description ? field.description : ''}\n`
   }
   function doClass(clazz, global) {
     global ??= false
