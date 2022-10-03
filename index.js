@@ -429,6 +429,9 @@
           },
           "getPose": {
             returns: ["EntityPoses"]
+          },
+          "getVehicle":{
+            returns:["EntityAPI|LivingEntityAPI|PlayerAPI"]
           }
         }
       },
@@ -458,6 +461,13 @@
             parameters: {
               0: { 0: { type: "Keybinds" } }
             }
+          }
+        }
+      },
+      "HostAPI":{
+        modifyMethod:{
+          "getTargetedEntity":{
+            returns:["EntityAPI|LivingEntityAPI|PlayerAPI"]
           }
         }
       },
