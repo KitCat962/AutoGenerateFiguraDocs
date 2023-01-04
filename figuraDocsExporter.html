@@ -821,7 +821,7 @@
         return typeOverrides[type] ?? type
       }
       function doFunction(name, description, params, returns, static, className) {
-        let r = `---${description}\n`
+        let r = `---${description.replace(/\n/g,"\n---")}\n`
         for (const param of params) {
           r += `---@param ${param.name} ${doType(param.type)}\n`
         }
@@ -850,12 +850,12 @@
         return r
       }
       function doField(field) {
-        return `---@field ${field.name} ${doType(field.type)} ${field.description ? field.description : ''}\n`
+        return `---@field ${field.name} ${doType(field.type)} ${field.description ? field.description.replace(/\n/g,"\n---") : ''}\n`
       }
       function doClass(clazz, global) {
         global ??= false
         const classOverride = overrides?.modifyClass[clazz.name]
-        let r = `---${clazz.description}\n---@class ${clazz.name}${clazz.parent ? `:${clazz.parent}` : ""}\n`
+        let r = `---${clazz.description.replace(/\n/g,"\n---")}\n---@class ${clazz.name}${clazz.parent ? `:${clazz.parent}` : ""}\n`
         for (const _field of clazz.fields) {
           const fieldOverride = classOverride?.modifyField?.[_field.name]
           if (fieldOverride?.delete) continue
@@ -908,7 +908,7 @@
         return r
       }
       function doList(list) {
-        let r = `---${list.description}\n---@alias ${list.name}\n`
+        let r = `---${list.description.replace(/\n/g,"\n---")}\n---@alias ${list.name}\n`
         for (const entry of list.entries)
           r += `---| "${entry}"\n`
         return r
@@ -919,11 +919,11 @@
         for (const field of global.fields) {
           const fieldOverride = globalOverride?.modifyField?.[field.name]
           if (fieldOverride?.delete) continue
-          r += `---${fieldOverride?.description ?? field.description}\n---@type ${fieldOverride?.type ?? doType(field.type)}\n${fieldOverride?.name ?? field.name}={}\n`
+          r += `---${fieldOverride?.description ?? field.description.replace(/\n/g,"\n---")}\n---@type ${fieldOverride?.type ?? doType(field.type)}\n${fieldOverride?.name ?? field.name}={}\n`
         }
         if (globalOverride?.addField)
           for (const field of globalOverride?.addField)
-            r += `---${field.description}\n---@type ${doType(field.type)}\n${field.name}={}\n`
+            r += `---${field.description.replace(/\n/g,"\n---")}\n---@type ${doType(field.type)}\n${field.name}={}\n`
         for (const _method of global.methods) {
           const methodOverride = globalOverride?.modifyMethod?.[_method.name]
           if (methodOverride?.delete) continue
